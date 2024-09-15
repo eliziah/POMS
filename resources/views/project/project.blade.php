@@ -8,7 +8,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">@yield('title')</h1>
+                        <!-- <h1 class="m-0">@yield('title')</h1> -->
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -31,11 +31,11 @@
                 <div class="row">
                     @if(count($internal_projects) > 0)
                     <div class="col-12">
-                        <div class="card">
+                        <div class="card border-left-warning shadow  ">
                             <div class="card-header">
                                 <div class="text-left">
-                                    <h3 class="m-0 d-inline">Internal Projects</h3>
-                                    <a href="/project/create/internal" class="ml-2 d-inline btn btn-sm btn-primary"><i class="fa-solid fa-plus"></i></a>
+                                    <h5 class="m-0 d-inline">Internal Projects</h5>
+                                    <a href="/project/create/internal" class="ml-2 d-inline btn btn-sm btn-outline-primary"><i class="fa-solid fa-plus"></i></a>
 
                                 </div>
                             </div>
@@ -125,11 +125,11 @@
 
                     @if(count($external_projects) > 0)
                     <div class="col-12">
-                        <div class="card">
+                        <div class="card border-left-warning shadow  ">
                             <div class="card-header">
                                 <div class="text-left">
-                                    <h3 class="d-inline m-0">External Projects</h3>
-                                    <a href="/project/create/external" class="ml-2 d-inline btn btn-sm btn-primary"><i class="fa-solid fa-plus"></i></a>
+                                    <h5 class="d-inline m-0">External Projects</h5>
+                                    <a href="/project/create/external" class="ml-2 d-inline btn btn-sm btn-outline-primary"><i class="fa-solid fa-plus"></i></a>
                                 </div>
                             </div>
                             <!-- /.card-header -->

@@ -46,9 +46,9 @@
                             </div>
                         </div>
                     </div>
-                        <!-- Pending Requests Card Example -->
+                        <!-- Project Statistics Card -->
                         <div class="col-xl-6 col-md-12 mb-4 text-center">
-                            <div class="card border-left-warning shadow h-100 py-2">
+                            <div class="card card-outline card-secondary border-left-warning shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-lg-3 mb-3 mb-lg-0 mb-xl-0">
@@ -92,9 +92,9 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Earnings (Monthly) Card Example -->
+                        <!-- Recorded Budget Card -->
                         <div class="col-xl-2 col-md-4 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card  card-outline card-success shadow h-100 py-2">
                                 <div class="card-body text-success">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
@@ -110,9 +110,9 @@
                             </div>
                         </div>
 
-                        <!-- Earnings (Monthly) Card Example -->
+                        <!-- Expenses Card -->
                         <div class="col-xl-2 col-md-4 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
+                            <div class="card card-outline card-danger border-left-success shadow h-100 py-2">
                                 <div class="card-body text-danger">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
@@ -130,7 +130,7 @@
 
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-2 col-md-4 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
+                            <div class="card card-outline card-primary border-left-info shadow h-100 py-2">
                                 <div class="card-body text-info">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
