@@ -451,6 +451,7 @@
                 responsive: true
             });
 
+            $('[data-toggle="tooltip"]').tooltip();
         });
         $(document).ready(function() {
             $('#realtimebudget').on('input', function() {
