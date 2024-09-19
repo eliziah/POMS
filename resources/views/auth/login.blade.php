@@ -23,12 +23,12 @@
 
     <div class="login-box">
 
-        <div class="card card-outline card-secondary">
+        <div class="card card-outline card-primary">
             <div class="card-header text-center">
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="image">
-                            <img src="/assets/dist/img/poms_new.png" class="img-fluid" alt="POMS Image">
+                        <div class="image mt-2 mb-2">
+                            <img src="/assets/dist/img/pomsv2logo.png" class="img-fluid" alt="POMS Image">
                         </div>
                     </div>
                 </div>
@@ -65,7 +65,7 @@
                         </div>
 
                         <div class="col-4">
-                            <button type="submit" class="btn btn-secondary btn-block">Sign In</button>
+                            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
                         </div>
                         <!-- <p class="mb-0">
                             <a href="/register" class="text-center">Register a new membership</a>

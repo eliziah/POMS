@@ -244,9 +244,9 @@
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="/dashboard" class="brand-link">
-                <img src="/assets/dist/img/pomsfull3crop1.png" alt="AdminLTE Logo"
+                <img src="/assets/dist/img/pomsv2crop.png" alt="AdminLTE Logo"
                     class="brand-image" style="opacity: 1">
-                <span class="brand-text font-weight-light">POMS v1</span>
+                <span class="brand-text font-weight-bold">POMS</span>
             </a>
             
             <!-- Sidebar -->
@@ -289,7 +289,7 @@
                             <a href="/" class="nav-link">
                                 <i class="nav-icon fa-solid fa-gauge-high"></i>
                                 <p>
-                                    IPG-PMO Dashboard
+                                    Portfolio Dashboard
                                 </p>
                             </a>
                         </li>
