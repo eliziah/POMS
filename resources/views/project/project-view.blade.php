@@ -61,87 +61,56 @@
                                                     <div class="col-lg-6">
                                                         <div class="row">
                                                             <div class="col-lg-12 text-lg-left text-xl-left text-center">
-                                                                <h3 class="d-inline font-weight-bold">{{$project->initiative_type}} | {{$project->short_name}}</h3>
+                                                                <h4 class="d-inline font-weight-bold">{{$project->initiative_type}} | {{$project->short_name}}</h4>
                                                                 @if ($project->status == 1)
                                                                     @if ($project->rag == 1)
-                                                                    <h4 class="d-inline ml-2"><i class="fa-solid fa-circle" style="color:green"></i></h4>
+                                                                    <h6 class="d-inline ml-2"><i class="fa-solid fa-circle" style="color:green"></i></h6>
                                                                     @elseif ($project->rag == 2)
-                                                                    <h4 class="d-inline ml-2"><i class="fa-solid fa-circle" style="color:orange"></i></h4>
+                                                                    <h6 class="d-inline ml-2"><i class="fa-solid fa-circle" style="color:orange"></i></h6>
                                                                     @elseif ($project->rag == 3)
-                                                                    <h5 class="d-inline ml-2">
+                                                                    <h6 class="d-inline ml-2">
                                                                         <div class="spinner-grow text-danger" role="status">
                                                                           <span class="visually-hidden"></span>
                                                                         </div>
-                                                                    </h5>
+                                                                    </h6>
                                                                     @else
-                                                                    <h4 class="d-inline ml-2"><i class="fa-solid fa-circle" style="color:gray"></i></h4>
+                                                                    <h5 class="d-inline ml-2"><i class="fa-solid fa-circle" style="color:gray"></i></h5>
                                                                     @endif
                                                                 @elseif ($project->status == 2)
-                                                                    <h4 class="d-inline ml-2"><span class="badge  badge-success">Completed</span></h4>
+                                                                    <h5 class="d-inline ml-2"><span class="badge  badge-success">Completed</span></h5>
                                                                 @elseif ($project->status == 3)
-                                                                    <h4 class="d-inline ml-2"><span class="badge  badge-warning">On-hold</span></h4>
+                                                                    <h5 class="d-inline ml-2"><span class="badge  badge-warning">On-hold</span></h5>
                                                                 @elseif ($project->status == 4)
-                                                                    <h4 class="d-inline ml-2"><span class="badge  badge-danger">Terminated</span></h4>
+                                                                    <h5 class="d-inline ml-2"><span class="badge  badge-danger">Terminated</span></h5>
                                                                 @endif
                                                             </div>
                                                             <div class="col-lg-12 text-lg-left text-xl-left text-center">
-                                                                <h4>{{$project->description}}</h4>
+                                                                <h5>{{$project->description}}</h5>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6 text-lg-right text-xl-right text-center">
                                                         <div class="row">
-                                                            <!-- <div class="col-lg-12">
-                                                                @if ($project->status == 1)
-                                                                    <h3 class="d-inline mr-2"><span class="badge badge-pill badge-secondary">On-going</span></h3>
-                                                                @elseif ($project->status == 2)
-                                                                    <h3 class="d-inline mr-2"><span class="badge badge-pill badge-success">Completed</span></h3>
-                                                                @endif
-                                                                
-                                                                @if ($project->gate == 1)
-                                                                    <h3 class="d-inline mr-2"><span class="badge badge-pill badge-secondary">G1-Initiation</span></h3>
-                                                                @elseif ($project->gate == 2)
-                                                                    <h3 class="d-inline mr-2"><span class="badge badge-pill badge-secondary">G2-Planning</span></h3>
-                                                                @elseif ($project->gate == 3)
-                                                                    <h3 class="d-inline mr-2"><span class="badge badge-pill badge-secondary">G3-Execution</span></h3>
-                                                                @elseif ($project->gate == 4)
-                                                                    <h3 class="d-inline mr-2"><span class="badge badge-pill badge-secondary">G4-Closing</span></h3>
-                                                                @elseif ($project->gate == 5)
-                                                                    <h3 class="d-inline mr-2"><span class="badge badge-pill badge-secondary">BR-Benefits</span></h3>
-                                                                @endif
-                                                                
-                                                                @if ($project->phase == 1)
-                                                                    <h3 class="d-inline mr-2"><span class="badge badge-pill badge-secondary">Pre-development</span></h3>
-                                                                @elseif ($project->phase == 2)
-                                                                    <h3 class="d-inline mr-2"><span class="badge badge-pill badge-secondary">Development</span></h3>
-                                                                @elseif ($project->phase == 3)
-                                                                    <h3 class="d-inline mr-2"><span class="badge badge-pill badge-secondary">Testing</span></h3>
-                                                                @elseif ($project->phase == 4)
-                                                                    <h3 class="d-inline mr-2"><span class="badge badge-pill badge-secondary">User Acceptance</span></h3>
-                                                                @elseif ($project->phase == 5)
-                                                                    <h3 class="d-inline mr-2"><span class="badge badge-pill badge-secondary">Live</span></h3>
-                                                                @endif
-                                                            </div> -->
                                                             <div class="col-lg-12 ">
-                                                                <h3 class="mr-2 d-inline"><span class="badge badge-pill badge-success">CPI {{number_format((float)$cpi, 2, '.', '')}}</span></h3>
-                                                                <h3 class="mr-2 d-inline"><span class="badge badge-pill badge-warning">SPI {{number_format((float)$spi, 2, '.', '')}}</span></h3>
-                                                                <h3 class="mr-2 d-inline"><span class="badge badge-pill badge-secondary">FW {{number_format((float)78.2938, 2, '.', '')}}%</span></h3>
-                                                                <h3 class="mr-2 d-inline"><span class="badge badge-pill badge-primary">Progress {{$project->progress}}%</span></h3>
+                                                                <h4 class="mr-2 d-inline"><span class="badge badge-pill badge-success">CPI {{number_format((float)$cpi, 2, '.', '')}}</span></h4>
+                                                                <h4 class="mr-2 d-inline"><span class="badge badge-pill badge-warning">SPI {{number_format((float)$spi, 2, '.', '')}}</span></h4>
+                                                                <h4 class="mr-2 d-inline"><span class="badge badge-pill badge-secondary">FW {{number_format((float)78.2938, 2, '.', '')}}%</span></h4>
+                                                                <h4 class="mr-2 d-inline"><span class="badge badge-pill badge-primary">Progress {{$project->progress}}%</span></h4>
                                                             </div>
                                                             @if (auth()->user()->role == 2)
-                                                            <div class="col-12 d-none d-lg-block mt-3 mb-2">
-                                                                <a href="#" class="ml-2 d-inline btn btn-outline-secondary elevation-2"><i class="fa-solid fa-user-pen"></i> Switch PM</a>
+                                                            <div class="col-12 d-none d-lg-block mt-2 mb-2">
+                                                                <a href="#" class="ml-2 d-inline btn btn-sm btn-outline-secondary elevation-2"><i class="fa-solid fa-user-pen"></i> Switch PM</a>
                                                                 <!-- <a href="#" class="ml-2 d-inline btn btn-outline-success elevation-2"><i class="fa-solid fa-arrow-up"></i> Declare Live</a> -->
-                                                                <a href="#" class="ml-2 d-inline btn btn-outline-warning elevation-2"><i class="fa-solid fa-hand"></i> Put On hold</a>
-                                                                <a href="#" class="ml-2 d-inline btn btn-outline-danger elevation-2"><i class="fa-solid fa-ban"></i> Terminate</a>
+                                                                <a href="#" class="ml-2 d-inline btn btn-sm btn-outline-warning elevation-2"><i class="fa-solid fa-hand"></i> Put On hold</a>
+                                                                <a href="#" class="ml-2 d-inline btn btn-sm btn-outline-danger elevation-2"><i class="fa-solid fa-ban"></i> Terminate</a>
                                                             </div>
                                                             @endif
-                                                            <div class="col-12 d-none d-lg-block mt-3">
-                                                                <a href="{{$project['repository']}}" class="ml-2 d-inline btn btn-outline-secondary elevation-2"><i class="fa-solid fa-folder"></i> Project Folder</a>
+                                                            <div class="col-12 d-none d-lg-block mt-2">
+                                                                <a href="{{$project['repository']}}" class="ml-2 d-inline btn btn-sm btn-outline-secondary elevation-2"><i class="fa-solid fa-folder"></i> Project Folder</a>
                                                                 @if ($project['area_type'] == 'Internal')
-                                                                <a href="{{$project['artifact']}}" target="_blank" class="ml-2 d-inline btn btn-outline-secondary elevation-2"><i class="fa-solid fa-file"></i> Business Case</a>
+                                                                <a href="{{$project['artifact']}}" target="_blank" class="ml-2 d-inline btn btn-sm btn-outline-secondary elevation-2"><i class="fa-solid fa-file"></i> Business Case</a>
                                                                 @elseif ($project['area_type'] == 'External')
-                                                                <a href="{{$project['artifact']}}" target="_blank" class="ml-2 d-inline btn btn-outline-secondary elevation-2"><i class="fa-solid fa-file"></i> Coms</a>
+                                                                <a href="{{$project['artifact']}}" target="_blank" class="ml-2 d-inline btn btn-sm btn-outline-secondary elevation-2"><i class="fa-solid fa-file"></i> Coms</a>
                                                                 @endif
                                                             </div>
                                                         </div>
@@ -195,30 +164,30 @@
                                                         <div class="row">
                                                             <div class="col-lg-12 mt-3">
                                                                 @if($project->status == 1)
-                                                                <h5><b>Project Status:</b><br/> <span class="text-primary">On-going</span></h5>
+                                                                <span><b>Project Status:</b><br/> <span class="text-primary">On-going</span></span>
                                                                 @elseif($project->status == 2)
-                                                                <h5><b>Project Status:</b><br/> <span class="text-success">Completed</span></h5>
+                                                                <span><b>Project Status:</b><br/> <span class="text-success">Completed</span></span>
                                                                 @elseif($project->status == 3)
-                                                                <h5><b>Project Status:</b><br/> <span class="text-warning">On-hold</span></h5>
+                                                                <span><b>Project Status:</b><br/> <span class="text-warning">On-hold</span></span>
                                                                 @elseif($project->status == 4)
-                                                                <h5><b>Project Status:</b><br/> <span class="text-warning">Terminated</span></h5>
+                                                                <span><b>Project Status:</b><br/> <span class="text-warning">Terminated</span></span>
                                                                 @endif
                                                             </div>
                                                             <div class="col-lg-12 mt-3">
-                                                                <h5><b>Subsidiary:</b><br/> {{$project->sponsor_sub}}</h5>
+                                                                <b>Subsidiary:</b><br/> {{$project->sponsor_sub}}
                                                             </div>
                                                             <div class="col-lg-12 mt-3">
                                                                 @if($project->area_type == "Internal")
-                                                                <h5><b>Sponsoring Person:</b><br/> {{$project->sponsor_name}}</h5>
+                                                                <span><b>Sponsoring Person:</b><br/> {{$project->sponsor_name}}</span>
                                                                 @elseif($project->area_type == "External")
-                                                                <h5><b>Client:</b><br/> {{$project->sponsor_name}}</h5>
+                                                                <span><b>Client:</b><br/> {{$project->sponsor_name}}</span>
                                                                 @endif
                                                             </div>
                                                             <div class="col-lg-12 mt-3">
                                                                 @if($project->area_type == "Internal")
-                                                                <h5><b>Sponsoring Dept:</b><br/> {{$project->sponsor_dept}}</h5>
+                                                                <span><b>Sponsoring Dept:</b><br/> {{$project->sponsor_dept}}</span>
                                                                 @elseif($project->area_type == "External")
-                                                                <h5><b>Implementor:</b><br/> {{$project->sponsor_dept}}</h5>
+                                                                <span><b>Implementor:</b><br/> {{$project->sponsor_dept}}</span>
                                                                 @endif
                                                             </div>
                                                         </div>
@@ -227,25 +196,25 @@
                                                         <div class="row">
                                                             <div class="col-lg-12 mt-3">
                                                                 @if($project->phase == 1)
-                                                                <h5><b>Project Phase:</b><br/> <span class="text-primary">Planning</span></h5>
+                                                                <span><b>Project Phase:</b><br/> <span class="text-primary">Planning</span></span>
                                                                 @elseif($project->phase == 2)
-                                                                <h5><b>Project Phase:</b><br/> <span class="text-primary">Development</span></h5>
+                                                                <span><b>Project Phase:</b><br/> <span class="text-primary">Development</span></span>
                                                                 @elseif($project->phase == 3)
-                                                                <h5><b>Project Phase:</b><br/> <span class="text-primary">Testing</span></h5>
+                                                                <span><b>Project Phase:</b><br/> <span class="text-primary">Testing</span></span>
                                                                 @elseif($project->phase == 4)
-                                                                <h5><b>Project Phase:</b><br/> <span class="text-primary">User Acceptance</span></h5>
+                                                                <span><b>Project Phase:</b><br/> <span class="text-primary">User Acceptance</span></span>
                                                                 @elseif($project->phase == 5)
-                                                                <h5><b>Project Phase:</b><br/> <span class="text-success">Live</span></h5>
+                                                                <span><b>Project Phase:</b><br/> <span class="text-success">Live</span></span>
                                                                 @endif
                                                             </div>
                                                             <div class="col-lg-12 mt-3">
-                                                                <h5><b>Planned Start Date:</b><br/> {{date_format(date_create($project->p_start),'F d, Y')}}</h5>
+                                                                <span><b>Planned Start Date:</b><br/> {{date_format(date_create($project->p_start),'F d, Y')}}</span>
                                                             </div>
                                                             <div class="col-lg-12 mt-3">
-                                                                <h5><b>Planned Live Date:</b><br/> {{date_format(date_create($project->p_live),'F d, Y')}}</h5>
+                                                                <span><b>Planned Live Date:</b><br/> {{date_format(date_create($project->p_live),'F d, Y')}}</span>
                                                             </div>
                                                             <div class="col-lg-12 mt-3">
-                                                                <h5><b>Planned Close Date:</b><br/> {{date_format(date_create($project->p_close),'F d, Y')}}</h5>
+                                                                <span><b>Planned Close Date:</b><br/> {{date_format(date_create($project->p_close),'F d, Y')}}</span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -253,25 +222,25 @@
                                                         <div class="row">
                                                             <div class="col-lg-12 mt-3">
                                                                 @if($project->gate == 1)
-                                                                <h5><b>Project Gate:</b><br/> <span class="text-primary">Gate 1</span></h5>
+                                                                <span><b>Project Gate:</b><br/> <span class="text-primary">Gate 1</span></span>
                                                                 @elseif($project->gate == 2)
-                                                                <h5><b>Project Gate:</b><br/> <span class="text-primary">Gate 2</span></h5>
+                                                                <span><b>Project Gate:</b><br/> <span class="text-primary">Gate 2</span></span>
                                                                 @elseif($project->gate == 3)
-                                                                <h5><b>Project Gate:</b><br/> <span class="text-primary">Gate 3</span></h5>
+                                                                <span><b>Project Gate:</b><br/> <span class="text-primary">Gate 3</span></span>
                                                                 @elseif($project->gate == 4)
-                                                                <h5><b>Project Gate:</b><br/> <span class="text-primary">Gate 4</span></h5>
+                                                                <span><b>Project Gate:</b><br/> <span class="text-primary">Gate 4</span></span>
                                                                 @elseif($project->gate == 5)
-                                                                <h5><b>Project Gate:</b><br/> <span class="text-success">Gate BR</span></h5>
+                                                                <span><b>Project Gate:</b><br/> <span class="text-success">Gate BR</span></span>
                                                                 @endif
                                                             </div>
                                                             <div class="col-lg-12 mt-3">
-                                                                <h5><b>Project Budget:</b><br/> Php {{number_format($project->budget,2,'.',',')}}</h5>
+                                                                <span><b>Project Budget:</b><br/> Php {{number_format($project->budget,2,'.',',')}}</span>
                                                             </div>
                                                             <div class="col-lg-12 mt-3">
-                                                                <h5><b>Earned Value:</b><br/> Php {{number_format($earned_value,2,'.',',')}}</h5>
+                                                                <span><b>Earned Value:</b><br/> Php {{number_format($earned_value,2,'.',',')}}</span>
                                                             </div>
                                                             <div class="col-lg-12 mt-3">
-                                                                <h5><b>Actual Cost:</b><br/> Php {{number_format($actual_cost,2,'.',',')}}</h5>
+                                                                <span><b>Actual Cost:</b><br/> Php {{number_format($actual_cost,2,'.',',')}}</span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -280,7 +249,7 @@
                                             <div class="col-lg-5 mt-3 order-1 order-lg-2 order-xl-2">
                                                 <div class="row">
                                                     <div class="col-lg-12">
-                                                        <h5><b>Progress Trend</b></h5>
+                                                        <span><b>Progress Trend</b></span>
                                                     </div>
                                                     <div class="col-lg-12">
                                                         <canvas id="trend_chart" style="width:100%;max-height: 350px;"></canvas>

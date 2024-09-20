@@ -52,7 +52,7 @@
             <!-- Left navbar links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a href="#" class="navbar-brand">
+                    <a href="/guest/dashboard" class="navbar-brand">
                         <img src="/assets/dist/img/pomsfull3crop1.png" alt="AdminLTE Logo" class="brand-image "
                              style="opacity: .8">
                         <span class="brand-text">POMS (Guest)</span>
@@ -62,7 +62,10 @@
                     <a class="nav-link" href="/guest/dashboard" role="button">Portfolio Dashboard</a>
               </li>
               <li class="nav-item d-none d-sm-inline-block">
-                    <a class="nav-link" href="/guest/project" role="button">Projects</a>
+                    <a class="nav-link" href="/guest/dashboard/internal" role="button">Internal Dashboard</a>
+              </li>
+              <li class="nav-item d-none d-sm-inline-block">
+                    <a class="nav-link" href="/guest/dashboard/external" role="button">External Dashboard</a>
               </li>
             </ul>
 

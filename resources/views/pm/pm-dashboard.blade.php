@@ -6,12 +6,12 @@
         <!-- Main content -->
         <div class="content">
             <div class="container-fluid p-3">
-                <div class="alert blink_me_fast alert-danger alert-dismissible fade show" role="alert">
+                <!-- <div class="alert blink_me_fast alert-danger alert-dismissible fade show" role="alert">
                     <strong>THIS IS FOR TESTING ONLY</strong> | Alert! Your project <a href="#">Project Moses</a> is already past its Go Live Date, please file a <a href="#">Schedule Change Request</a> now.
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                </div>
+                </div> -->
                 <div class="row">
                     <div class="col-lg-12 mb-3 mt-3">
                         <div class="row">
@@ -144,7 +144,7 @@
                     <div class="row">
 
                         <!-- Area Chart -->
-                        <div class="col-xl-12 col-lg-12 d-flex align-items-stretch">
+                        <div class="col-xl-6 col-lg-6 d-flex align-items-stretch">
                             <div class="card shadow mb-4 w-100">
                                 <!-- Card Header - Dropdown -->
                                 <div
@@ -169,14 +169,10 @@
                                 <div class="card-body">
                                     <table class="dashboard_table table table-sm table-striped table-bordered table-hover">
                                         <thead>
-                                            <th>Project ID</th>
                                             <th>Project Name</th>
                                             <th>SPI</th>
                                             <th>CPI</th>
-                                            <th>Phase</th>
-                                            <th>Sponsor</th>
                                             <th>Live Date</th>
-                                            <th>Close Date</th>
                                         </thead>
                                         <tbody>
                                             @foreach ($projs as $data)
@@ -197,9 +193,8 @@
                                                     @else
                                                         <i class="fa-solid fa-circle" style="color:gray"></i>
                                                     @endif    
-                                                    <a href="/project/{{ $data->proj_id }}">{{ $data->proj_id }}
+                                                    <a href="/project/{{ $data->proj_id }}">{{ $data->short_name }}
                                                 </td>
-                                                <td><b>{{ $data->short_name }}</b></td>
                                                 @if ($data->spi < .75)
                                                     <td><span class="badge badge-pill badge-danger">{{number_format((float)$data->spi, 2, '.', '')}}</span> </td>                                               
                                                 @elseif ($data->spi < .89)
@@ -214,23 +209,7 @@
                                                 @elseif ($data->cpi >= .89)
                                                     <td><span class="badge badge-pill badge-success">{{number_format((float)$data->cpi, 2, '.', '')}}</span> </td>        
                                                 @endif
-
-                                                @if($data->phase == 1)
-                                                <td>Planning</td>
-                                                @elseif($data->phase == 2)
-                                                <td>Development</td>
-                                                @elseif($data->phase == 3)
-                                                <td>Testing</td>
-                                                @elseif($data->phase == 4)
-                                                <td>User Acceptance</td>
-                                                @elseif($data->phase == 5)
-                                                <td>Live</td>
-                                                @endif
-                                                <td>{{$data->sponsor_name}}</td>
-                                                <td>{{date_format(date_create($data->p_live),'F d, Y')}}</td>
-                                                <td>{{date_format(date_create($data->p_close),'F d, Y')}}</td>
-
-                                                
+                                                <td>{{date_format(date_create($data->p_live),'M d, Y')}}</td>                                               
                                             </tr>
                                             @endforeach
                                             
@@ -241,7 +220,7 @@
                         </div>
 
                         <!-- Pie Chart -->
-                        <div class="col-xl-5 col-lg-5 d-flex align-items-stretch">
+                        <div class="col-xl-6 col-lg-6 d-flex align-items-stretch">
                             <div class="card shadow mb-4 w-100">
                                 <!-- Card Header - Dropdown -->
                                 <div
@@ -362,7 +341,7 @@
 
                         }
                         </script>
-                    <div class="col-xl-7 col-lg-7 d-none d-lg-flex align-items-stretch">
+                    <div class="col-xl-12 col-lg-12 d-none d-lg-flex align-items-stretch">
                         <div class="card shadow mb-4 w-100">
                             <!-- Card Header - Dropdown -->
                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-center">

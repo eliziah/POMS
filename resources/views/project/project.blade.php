@@ -3,40 +3,36 @@
 @section('content')
 
     <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <div class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <!-- <h1 class="m-0">@yield('title')</h1> -->
-                    </div><!-- /.col -->
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item">
-
-
-
-                            </li>
-                        </ol>
-                    </div><!-- /.col -->
-                </div><!-- /.row -->
-            </div><!-- /.container-fluid -->
-        </div>
-        <!-- /.content-header -->
 
         <!-- Main content -->
         <div class="content">
             <div class="container-fluid">
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
+                    <div class="col-lg-12 text-center mb-3 mt-3">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h3><b>IPG - PMO PROJECTS</b></h3>
+                            </div>
+                            <div class="col-lg-12 text-center">
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <a type="button" href="/project?status=all"  class="btn btn-secondary">All Projects</a>
+                                    <a type="button" href="/project?status=1"  class="btn btn-primary">Ongoing</a>
+                                    <a type="button" href="/project?status=3"  class="btn btn-warning">Onhold</a>
+                                    <a type="button" href="/project?status=2"  class="btn btn-success">Completed</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     @if(count($internal_projects) > 0)
                     <div class="col-12">
                         <div class="card border-left-warning shadow  ">
                             <div class="card-header">
-                                <div class="text-left">
-                                    <h5 class="m-0 d-inline">Internal Projects</h5>
-                                    <a href="/project/create/internal" class="ml-2 d-inline btn btn-sm btn-outline-primary"><i class="fa-solid fa-plus"></i></a>
-
+                                <div class="row">
+                                    <div class="col-lg-6 text-left">
+                                        <h3 class="m-0 d-inline">Internal Projects</h3>
+                                        <a href="/project/create/internal" class="ml-2 d-inline btn btn-sm btn-outline-primary"><i class="fa-solid fa-plus"></i></a>
+                                    </div>
                                 </div>
                             </div>
                             <!-- /.card-header -->
@@ -128,7 +124,7 @@
                         <div class="card border-left-warning shadow  ">
                             <div class="card-header">
                                 <div class="text-left">
-                                    <h5 class="d-inline m-0">External Projects</h5>
+                                    <h3 class="d-inline m-0">External Projects</h3>
                                     <a href="/project/create/external" class="ml-2 d-inline btn btn-sm btn-outline-primary"><i class="fa-solid fa-plus"></i></a>
                                 </div>
                             </div>

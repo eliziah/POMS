@@ -23,16 +23,15 @@
 
     <div class="login-box">
 
-        <div class="card card-outline card-primary">
+        <div class="card p-3 card-outline card-primary">
             <div class="card-header text-center">
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="image mt-2 mb-2">
+                        <div class="image">
                             <img src="/assets/dist/img/pomsv2logo.png" class="img-fluid" alt="POMS Image">
                         </div>
                     </div>
                 </div>
-                
             </div>
             <div class="card-body">
                 <!-- <p class="login-box-msg">Sign in to start your session</p> -->
@@ -73,17 +72,21 @@
                     </div>
                 </form>
             </div>
-            <!-- <div class="card-footer">
+            <div class="card-footer">
                 
 
                 <div class="row">
-                    <div class="col-lg-12 text-center">
+                    <!-- <div class="col-lg-12 text-center">
                         <div class="image">
                             <img src="/assets/dist/img/absi.png" style="height: 50px;" class="img-fluid" alt="POMS Image">
                         </div>
+                        <em>Asticom Business Services Inc</em>
+                    </div> -->
+                    <div class="col-lg-12 text-center">
+                    <strong>Copyright &copy; 2024 <a href="https://absi.ph" target="_blank">ABSI</a>.</strong>
                     </div>
                 </div>
-            </div> -->
+            </div>
 
         </div>
 

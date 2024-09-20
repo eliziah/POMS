@@ -346,6 +346,16 @@
                                 </p>
                             </a>
                         </li>
+                        @if (auth()->user()->role == 1)
+                        <li class="nav-item pt-3" style="border-bottom: 1px solid #4f5962">
+                            <a href="/present" class="nav-link">
+                            <i class="nav-icon fa-solid fa-person-chalkboard"></i>
+                                <p>
+                                    Presentation Mode
+                                </p>
+                            </a>
+                        </li>
+                        @endif
                         @if (auth()->user()->role == 2)
                         <li class="nav-item pt-3">
                             <a href="/guest/dashboard" class="nav-link">

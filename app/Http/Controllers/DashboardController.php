@@ -8,6 +8,7 @@ use App\Models\Project;
 use App\Models\Ledger;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class DashboardController extends Controller
 {
@@ -178,6 +179,77 @@ class DashboardController extends Controller
             'depts_name' => $depts_name,
             'depts_count' => $depts_count,
             'projects' => $projects
+        ]);
+    }
+
+    public function guest_specific($type="internal")
+    {
+
+        if($type!="external" && $type!="internal"){
+            return redirect()->back();    
+        }
+
+        $project_list_ongoing = Project::where('area_type','=',$type)->orderBy('rag','desc')->orderBy('id','desc')->get();
+        $project_all = Project::where('status','<>',0)->where('area_type','=',$type)->where('status','<>',4)->get()->count();
+        $project_ongoing = Project::where('status','=',1)->where('area_type','=',$type)->get()->count();
+        $project_completed = Project::where('status','=',2)->where('area_type','=',$type)->get()->count();
+        $project_onhold = Project::where('status','=',3)->where('area_type','=',$type)->get()->count();
+        $project_green = Project::where('status','=',1)->where('area_type','=',$type)->where('rag','=',1)->get()->count();
+        $project_amber = Project::where('status','=',1)->where('area_type','=',$type)->where('rag','=',2)->get()->count();
+        $project_red = Project::where('status','=',1)->where('area_type','=',$type)->where('rag','=',3)->get()->count();
+        $project_rag = array( $project_green,$project_amber,$project_red );
+        $cpi = Project::where('status','<>',0)->where('area_type','=',$type)->where('status','<>',4)->where('cpi','<>',0)->avg('cpi');
+        $spi = Project::where('status','<>',0)->where('area_type','=',$type)->where('status','<>',4)->where('spi','<>',0)->avg('spi');
+
+        $ledger_all_positive = Ledger::select('project_ledger.*')
+            ->where('projects.status','<>',0)
+            ->where('projects.status','<>',4)
+            ->where('projects.status','<>',3)
+            ->where('projects.area_type','=',$type)
+            ->where('project_ledger.status','=',1)
+            ->where('project_ledger.cost_type','=',1)
+            ->join('projects','projects.id','=','project_ledger.project_id')
+            ->get();
+
+        $budget = $ledger_all_positive->sum('value');
+
+        $ledger_all_negative = Ledger::select('project_ledger.*')
+            ->where('projects.status','<>',0)
+            ->where('projects.status','<>',4)
+            ->where('projects.status','<>',3)
+            ->where('projects.area_type','=',$type)
+            ->where('project_ledger.status','=',1)
+            ->where('project_ledger.cost_type','=',2)
+            ->join('projects','projects.id','=','project_ledger.project_id')
+            ->get();
+        $cost = $ledger_all_negative->sum('value');
+
+        if($type=="internal"){
+            $depts = DB::select("SELECT sponsor_dept, COUNT(*) as dept_count FROM projects WHERE projects.area_type = '".$type."' GROUP BY sponsor_dept ORDER BY dept_count DESC LIMIT 10;");
+        }else if($type=="external"){
+            $depts = DB::select("SELECT sponsor_name as `sponsor_dept`, COUNT(*) as dept_count FROM projects WHERE projects.area_type = '".$type."' GROUP BY sponsor_name ORDER BY dept_count DESC LIMIT 10;");
+        }
+        $depts_name = array();
+        $depts_count = array();
+        foreach ($depts as $key => $value) {
+            array_push($depts_name, $value->sponsor_dept);
+            array_push($depts_count, $value->dept_count);
+        }
+
+        return view('dashboard.guest-specific-dashboard', [
+            'depts_name' => $depts_name,
+            'depts_count' => $depts_count,
+            'p_a' => $project_all,
+            'p_o' => $project_ongoing,
+            'p_c' => $project_completed,
+            'p_h' => $project_onhold,
+            'cpi' => $cpi,
+            'spi' => $spi,
+            'area_type' => $type,
+            'budget' => $budget,
+            'cost' => $cost,
+            'projects' => $project_list_ongoing,
+            'rag_count' => $project_rag
         ]);
     }
 }

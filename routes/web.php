@@ -12,6 +12,7 @@ use App\Http\Controllers\ArtifactController;
 use App\Http\Controllers\WeeklyController;
 use App\Http\Controllers\KPIController;
 use App\Http\Controllers\MOMController;
+use App\Http\Controllers\PresentationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -66,7 +67,7 @@ Route::post('/weeklyreport/create/{id}', [WeeklyController::class, 'store'])->mi
 
 
 //project
-Route::get('/guest/project', [ProjectController::class, 'guest_all']);
+Route::get('/guest/dashboard/{type}', [DashboardController::class, 'guest_specific']);
 Route::get('/guest/project/{id}', [ProjectController::class, 'guest_show_project']);
 Route::get('/guest/dashboard', [DashboardController::class, 'guest']);
 
@@ -82,3 +83,5 @@ Route::get('/kpi/projects', [KPIController::class, 'kpi_projects'])->middleware(
 Route::resource('/profile', UserController::class)->middleware('auth');
 
 Route::resource('/mom', MOMController::class)->middleware('auth');
+
+Route::resource('/present', PresentationController::class)->middleware('auth');

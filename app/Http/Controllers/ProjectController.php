@@ -23,6 +23,11 @@ class ProjectController extends Controller
 {
     public function index()
     {
+        $stat = "all";
+        if(request()->exists('status')){
+            $stat = request()->status;
+        }
+
         $x_projects = Project::select('projects.*','users.name as pmname')
                             ->where('projects.area_type','=','External')
                             ->where('projects.status','<>',0)
@@ -34,6 +39,11 @@ class ProjectController extends Controller
                             ->where('projects.status','<>',0)
                             ->join('users','users.id_user','=','projects.pm')
                             ->orderBy('projects.id','desc');
+        
+        if($stat != "all"){
+            $x_projects->where('projects.status','=',$stat);
+            $n_projects->where('projects.status','=',$stat);
+        }
 
         if(auth()->user()->role == 1){
             $x_projects->where('projects.pm','=',auth()->user()->id_user);
@@ -308,29 +318,12 @@ class ProjectController extends Controller
                         WHERE projects.proj_id = '".$id."'
                         ORDER BY created_at DESC;");
 
-        $cr_budget = CRBudget::select('cr_budget.*','projects.short_name as project_name','users.name as pmname')
-                        ->where('projects.proj_id','=',$id)
-                        ->join('projects','projects.id','=','cr_budget.project_id')
-                        ->join('users','users.id_user','=','projects.pm')
-                        ->orderBy('cr_budget.created_at','desc')
-                        ->orderBy('cr_budget.status','desc')
-                        ->get();
-                        
-
-        $cr_sched = CRSchedule::select('cr_sched.*','projects.short_name as project_name','users.name as pmname')
-                        ->where('projects.proj_id','=',$id)
-                        ->join('projects','projects.id','=','cr_sched.project_id')
-                        ->join('users','users.id_user','=','projects.pm')
-                        ->orderBy('cr_sched.created_at')
-                        ->get();
-
         $actual_cost = $this->get_actual_cost($id);
 
         $weekly_3_reversed = Weekly::select('weekly_reports.*')
                 ->where('projects.proj_id','=',$id)
                 ->join('projects','projects.id','=','weekly_reports.project_id')    
                 ->orderBy('weekly_reports.workweek','desc')
-                ->limit(3)  
                 ->get();
 
         $trend = $this->get_trend($id);
