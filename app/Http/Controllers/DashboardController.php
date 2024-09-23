@@ -49,7 +49,12 @@ class DashboardController extends Controller
                 ->join('projects','projects.id','=','project_ledger.project_id')
                 ->get();
         $cost = $ledger_all_negative->sum('value');
-        $consumed = ($cost / $budget) * 100;
+        if($budget != 0){
+            $consumed = ($cost / $budget) * 100;
+        }else{
+            $consumed = 0;
+        }
+        
 
         $crs = DB::select("SELECT t.*, projects.short_name as name FROM (
                     ( SELECT id, crs_id as cr_id, 'crs' as type, new_live as new, project_id, status, created_at FROM cr_sched )
