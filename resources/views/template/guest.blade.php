@@ -53,7 +53,7 @@
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a href="/guest/dashboard" class="navbar-brand">
-                        <img src="/assets/dist/img/pomsfull3crop1.png" alt="AdminLTE Logo" class="brand-image "
+                        <img src="/assets/dist/img/pomsv2crop.png" alt="AdminLTE Logo" class="brand-image "
                              style="opacity: .8">
                         <span class="brand-text">POMS (Guest)</span>
                       </a>
