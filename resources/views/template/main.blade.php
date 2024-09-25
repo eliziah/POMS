@@ -422,7 +422,7 @@
 
             </div>
             <!-- Default to the left -->
-            <strong>Copyright &copy; 2024 <a href="#">Rod Eliziah Molina</a>.</strong> All rights
+            <strong>Copyright &copy; 2024 <a href="absi.ph">ABSI</a>.</strong> All rights
             reserved.
         </footer>
     </div>
