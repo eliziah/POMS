@@ -41,7 +41,7 @@
                                                 <div class="text-xs font-weight-bold text-uppercase">
                                                     <div class="h6 font-weight-bold text-gray">Total Projects</div>
                                                 </div>
-                                                <div class="h4 mb-0 font-weight-bold text-gray">43 Projects</div>
+                                                <div class="h4 mb-0 font-weight-bold text-gray">{{$p_a}} Projects</div>
                                             </div>
                                         </div>
                                     </div>
@@ -58,7 +58,7 @@
                                             <div class="col">
                                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                     Completed</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">21 Projects</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{$p_c}} Projects</div>
                                             </div>
                                         </div>
                                     </div>
@@ -67,7 +67,7 @@
                                             <div class="col">
                                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                     Ongoing</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">19 Projects</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{$p_o}} Projects</div>
                                             </div>
                                         </div>
                                     </div>
@@ -76,7 +76,7 @@
                                             <div class="col">
                                                 <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                                     Onhold</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">3 Projects</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{$p_h}} Projects</div>
                                             </div>
                                         </div>
                                     </div>
@@ -93,7 +93,7 @@
                                             <div class="col">
                                                 <div class="text-xs font-weight-bold text-uppercase mb-1">
                                                     External</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><a style="color:black;" href="/guest/dashboard/external">19 Projects</a></div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><a style="color:black;" href="/guest/dashboard/external">{{$p_ex}} Projects</a></div>
                                             </div>
                                         </div>
                                     </div>
@@ -102,7 +102,7 @@
                                             <div class="col">
                                                 <div class="text-xs font-weight-bold text-uppercase mb-1">
                                                     Internal</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><a style="color:black" href="/guest/dashboard/internal">3 Projects</a></div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><a style="color:black" href="/guest/dashboard/internal">{{$p_in}} Projects</a></div>
                                             </div>
                                         </div>
                                     </div>
@@ -199,7 +199,7 @@
                       data: {
                         labels: ["Green", "Red", "Amber"],
                         datasets: [{
-                          data: [14, 8, 5],
+                            data: @json($rag_count),
                           backgroundColor: ["#78e08f","#eb2f06","#fa983a"],
                           hoverBorderColor: "rgba(234, 236, 244, 1)",
                         }],

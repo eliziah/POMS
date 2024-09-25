@@ -149,29 +149,23 @@ class DashboardController extends Controller
     public function guest()
     {
 
-        $projects = Project::select('projects.*','users.name as pmname')
-                            ->where('projects.status',1)
-                            ->join('users','users.id_user','=','projects.pm')
-                            ->orderBy('projects.rag','desc')
-                            ->get();
+        $project_all = Project::where('status','<>',0)->where('status','<>',4)->get()->count();
+        $project_in = Project::where('status','<>',0)->where('status','<>',4)->where('area_type','=','Internal')->get()->count();
+        $project_ex = Project::where('status','<>',0)->where('status','<>',4)->where('area_type','=','External')->get()->count();
+        $project_ongoing = Project::where('status','=',1)->get()->count();
+        $project_completed = Project::where('status','=',2)->get()->count();
+        $project_onhold = Project::where('status','=',3)->get()->count();
+        $project_green = Project::where('status','=',1)->where('rag','=',1)->get()->count();
+        $project_amber = Project::where('status','=',1)->where('rag','=',2)->get()->count();
+        $project_red = Project::where('status','=',1)->where('rag','=',3)->get()->count();
+        $project_rag = array( $project_green,$project_amber,$project_red );
+        $cpi = Project::where('status','<>',0)->where('status','<>',4)->where('cpi','<>',0)->avg('cpi');
+        $spi = Project::where('status','<>',0)->where('status','<>',4)->where('spi','<>',0)->avg('spi');
+
 
         // var_dump($projects);
         // exit();
-        $crs = DB::select("SELECT t.*, projects.short_name as name FROM (
-                    ( SELECT id, crs_id as cr_id, 'crs' as type, new_live as new, project_id, status, created_at FROM cr_sched )
-                    UNION ALL
-                    ( SELECT id, crb_id as cr_id, 'crb' as type, new_budget as new, project_id, status, created_at FROM cr_budget )
-                ) as t 
-                INNER JOIN projects ON t.project_id = projects.id
-                ORDER BY created_at DESC;");
         $depts = DB::select("SELECT sponsor_dept, COUNT(*) as dept_count FROM projects GROUP BY sponsor_dept ORDER BY dept_count DESC LIMIT 10;");
-        $logs = ProjectLog::select('project_logs.*','projects.short_name')
-                ->where('project_logs.action',2)
-                ->where('project_logs.item',7)
-                ->join('projects','projects.id','=','project_logs.project_id')
-                ->orderBy('project_logs.created_at','desc')
-                ->get();
-
         $depts_name = array();
         $depts_count = array();
         foreach ($depts as $key => $value) {
@@ -179,11 +173,17 @@ class DashboardController extends Controller
             array_push($depts_count, $value->dept_count);
         }
         return view('dashboard.guest-dashboard', [
-            'crb' => $crs,
-            'logs' => $logs,
             'depts_name' => $depts_name,
             'depts_count' => $depts_count,
-            'projects' => $projects
+            'p_a' => $project_all,
+            'p_in' => $project_in,
+            'p_ex' => $project_ex,
+            'p_o' => $project_ongoing,
+            'p_c' => $project_completed,
+            'p_h' => $project_onhold,
+            'cpi' => $cpi,
+            'spi' => $spi,
+            'rag_count' => $project_rag
         ]);
     }
 
