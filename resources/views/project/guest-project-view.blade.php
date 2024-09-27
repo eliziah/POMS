@@ -196,7 +196,7 @@
                                 <div class="card-body">    
                                     <div class="row">
                                             <div class="col-lg-12">
-                                                <h5><b>3-week Progress</b></h5>
+                                                <h5><b>Weekly Progress</b></h5>
                                             </div>
                                             <div class="col-lg-12">
                                                 <table class="table table-sm table-striped table-hover text">
