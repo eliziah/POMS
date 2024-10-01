@@ -165,7 +165,7 @@ class DashboardController extends Controller
 
         // var_dump($projects);
         // exit();
-        $depts = DB::select("SELECT sponsor_dept, COUNT(*) as dept_count FROM projects GROUP BY sponsor_dept ORDER BY dept_count DESC LIMIT 10;");
+        $depts = DB::select("SELECT sponsor_dept, COUNT(*) as dept_count FROM projects WHERE area_type = 'internal' GROUP BY sponsor_dept ORDER BY dept_count DESC LIMIT 10;");
         $depts_name = array();
         $depts_count = array();
         foreach ($depts as $key => $value) {
