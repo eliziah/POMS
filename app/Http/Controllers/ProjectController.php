@@ -277,7 +277,7 @@ class ProjectController extends Controller
                     ->where('projects.proj_id','=',$id)
                     ->join('projects','projects.id','=','weekly_reports.project_id')
                     ->orderBy('weekly_reports.end','desc')
-                    ->limit(7)
+                    ->limit(10)
                     ->get();
 
         $ends = array();

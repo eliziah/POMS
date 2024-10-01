@@ -101,8 +101,12 @@
                                                             <div class="col-12 d-none d-lg-block mt-2 mb-2">
                                                                 <a href="#" class="ml-2 d-inline btn btn-sm btn-outline-secondary elevation-2"><i class="fa-solid fa-user-pen"></i> Switch PM</a>
                                                                 <!-- <a href="#" class="ml-2 d-inline btn btn-outline-success elevation-2"><i class="fa-solid fa-arrow-up"></i> Declare Live</a> -->
-                                                                <a href="#" class="ml-2 d-inline btn btn-sm btn-outline-warning elevation-2"><i class="fa-solid fa-hand"></i> Put On hold</a>
-                                                                <a href="#" class="ml-2 d-inline btn btn-sm btn-outline-danger elevation-2"><i class="fa-solid fa-ban"></i> Terminate</a>
+                                                                 @if($project['status'] == 3)
+                                                                <a href="/update/resume/{{$project['id']}}" class="ml-2 d-inline btn btn-sm btn-outline-success elevation-2"><i class="fa-solid fa-arrow-right"></i> Resume Project</a>
+                                                                @else
+                                                                <a href="/update/hold/{{$project['id']}}" class="ml-2 d-inline btn btn-sm btn-outline-warning elevation-2"><i class="fa-solid fa-hand"></i> Put On hold</a>
+                                                                @endif
+                                                                <a href="/update/terminate/{{$project['id']}}" class="ml-2 d-inline btn btn-sm btn-outline-danger elevation-2"><i class="fa-solid fa-ban"></i> Terminate</a>
                                                             </div>
                                                             @endif
                                                             <div class="col-12 d-none d-lg-block mt-2">
@@ -274,7 +278,14 @@
                                                         },
                                                         options: {
                                                             legend: {display: false},
-                                                            maintainAspectRatio: false
+                                                            maintainAspectRatio: false,
+                                                            // scales: {
+                                                            //     yAxes: [{
+                                                            //         display: true,
+                                                            //         ticks: {suggestedMin: 50,
+                                                            //             suggestedMax: 100}
+                                                            //     }]
+                                                            // }
                                                         }
                                                     });
                                                 });

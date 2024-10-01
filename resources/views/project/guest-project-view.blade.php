@@ -181,7 +181,14 @@
                                                 },
                                                 options: {
                                                     legend: {display: false},
-                                                    maintainAspectRatio: false
+                                                    maintainAspectRatio: false,
+                                                    // scales: {
+                                                    //     yAxes: [{
+                                                    //         display: true,
+                                                    //         ticks: {suggestedMin: 0,
+                                                    //             suggestedMax: 100}
+                                                    //     }]
+                                                    // }
                                                 }
                                             });
                                         });
@@ -205,7 +212,7 @@
                                                         <th scope="col">Progress</th>
                                                         <th scope="col">RAG</th>
                                                         <th scope="col">Phase</th>
-                                                        <th scope="col" width="60%">Executive</th>
+                                                        <th scope="col" width="60%">Executive Summary</th>
                                                     </thead>
                                                     <tbody>
                                                         @foreach($weekly_3_reversed as $week)

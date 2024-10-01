@@ -87,14 +87,18 @@
                                                 </td>
                                                 <td><b>{{ $data->short_name }}</b></td>
 
-                                                @if ($data->spi < .75)
+                                                @if ($data->spi == 0)
+                                                    <td><span class="badge badge-pill badge-secondary">---</span> </td>   
+                                                @elseif ($data->spi < .75)
                                                     <td><span class="badge badge-pill badge-danger">{{number_format((float)$data->spi, 2, '.', '')}}</span> </td>                                               
                                                 @elseif ($data->spi < .89)
                                                     <td><span class="badge badge-pill badge-warning">{{number_format((float)$data->spi, 2, '.', '')}}</span> </td>    
                                                 @elseif ($data->spi >= .89)
-                                                    <td><span class="badge badge-pill badge-success">{{number_format((float)$data->spi, 2, '.', '')}}</span> </td>    
+                                                    <td><span class="badge badge-pill badge-success">{{number_format((float)$data->spi, 2, '.', '')}}</span> </td>     
                                                 @endif
-                                                @if ($data->cpi < .75)
+                                                @if ($data->cpi == 0)
+                                                    <td><span class="badge badge-pill badge-secondary">---</span> </td>   
+                                                @elseif ($data->cpi < .75)
                                                     <td><span class="badge badge-pill badge-danger">{{number_format((float)$data->cpi, 2, '.', '')}}</span> </td>
                                                 @elseif ($data->cpi < .89)
                                                     <td><span class="badge badge-pill badge-warning">{{number_format((float)$data->cpi, 2, '.', '')}}</span> </td>        
@@ -105,9 +109,9 @@
                                                     <td>{{ $data->pmname }}</td>
                                                 @endif
                                                 <td>{{$data->sponsor_dept}}</td>
-                                                <td>{{date_format(date_create($data->p_start),'F d, Y')}}</td>
-                                                <td>{{date_format(date_create($data->p_live),'F d, Y')}}</td>
-                                                <td>{{date_format(date_create($data->p_close),'F d, Y')}}</td>
+                                                <td>{{date_format(date_create($data->p_start),'M d, Y')}}</td>
+                                                <td>{{date_format(date_create($data->p_live),'M d, Y')}}</td>
+                                                <td>{{date_format(date_create($data->p_close),'M d, Y')}}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -196,9 +200,9 @@
                                                     <td>{{ $data->pmname }}</td>
                                                 @endif
                                                 <td>{{$data->sponsor_name}}</td>
-                                                <td>{{date_format(date_create($data->p_start),'F d, Y')}}</td>
-                                                <td>{{date_format(date_create($data->p_live),'F d, Y')}}</td>
-                                                <td>{{date_format(date_create($data->p_close),'F d, Y')}}</td>
+                                                <td>{{date_format(date_create($data->p_start),'M d, Y')}}</td>
+                                                <td>{{date_format(date_create($data->p_live),'M d, Y')}}</td>
+                                                <td>{{date_format(date_create($data->p_close),'M d, Y')}}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>

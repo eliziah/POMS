@@ -195,7 +195,7 @@ class DashboardController extends Controller
         }
 
         $project_list_ongoing = Project::where('area_type','=',$type)->orderBy('rag','desc')->orderBy('id','desc')->get();
-        $project_all = Project::where('status','<>',0)->where('area_type','=',$type)->where('status','<>',4)->get()->count();
+        $project_all = Project::where('status','<>',0)->where('area_type','=',$type)->where('status','<>',4)->where('status','<>',5)->get()->count();
         $project_ongoing = Project::where('status','=',1)->where('area_type','=',$type)->get()->count();
         $project_completed = Project::where('status','=',2)->where('area_type','=',$type)->get()->count();
         $project_onhold = Project::where('status','=',3)->where('area_type','=',$type)->get()->count();
