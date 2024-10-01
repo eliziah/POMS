@@ -149,9 +149,9 @@ class DashboardController extends Controller
     public function guest()
     {
 
-        $project_all = Project::where('status','<>',0)->where('status','<>',4)->get()->count();
-        $project_in = Project::where('status','<>',0)->where('status','<>',4)->where('area_type','=','Internal')->get()->count();
-        $project_ex = Project::where('status','<>',0)->where('status','<>',4)->where('area_type','=','External')->get()->count();
+        $project_all = Project::where('status','<>',0)->where('status','<>',4)->where('status','<>',5)->get()->count();
+        $project_in = Project::where('status','<>',0)->where('status','<>',4)->where('status','<>',5)->where('area_type','=','Internal')->get()->count();
+        $project_ex = Project::where('status','<>',0)->where('status','<>',4)->where('status','<>',5)->where('area_type','=','External')->get()->count();
         $project_ongoing = Project::where('status','=',1)->get()->count();
         $project_completed = Project::where('status','=',2)->get()->count();
         $project_onhold = Project::where('status','=',3)->get()->count();
@@ -159,8 +159,8 @@ class DashboardController extends Controller
         $project_amber = Project::where('status','=',1)->where('rag','=',2)->get()->count();
         $project_red = Project::where('status','=',1)->where('rag','=',3)->get()->count();
         $project_rag = array( $project_green,$project_amber,$project_red );
-        $cpi = Project::where('status','<>',0)->where('status','<>',4)->where('cpi','<>',0)->avg('cpi');
-        $spi = Project::where('status','<>',0)->where('status','<>',4)->where('spi','<>',0)->avg('spi');
+        $cpi = Project::where('status','<>',0)->where('status','<>',5)->where('status','<>',4)->where('cpi','<>',0)->avg('cpi');
+        $spi = Project::where('status','<>',0)->where('status','<>',5)->where('status','<>',4)->where('spi','<>',0)->avg('spi');
 
 
         // var_dump($projects);
