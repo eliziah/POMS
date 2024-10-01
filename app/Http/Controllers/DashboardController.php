@@ -194,7 +194,7 @@ class DashboardController extends Controller
             return redirect()->back();    
         }
 
-        $project_list_ongoing = Project::where('area_type','=',$type)->where('status','<>',5)->where('status','<>',4)->where('status','<>',0)->orderBy('rag','desc')->orderBy('id','desc')->get();
+        $project_list_ongoing = Project::where('area_type','=',$type)->where('status','<>',5)->where('status','<>',4)->where('status','<>',0)->orderBy('status','asc')->orderBy('id','desc')->get();
         $project_all = Project::where('status','<>',0)->where('area_type','=',$type)->where('status','<>',4)->where('status','<>',5)->get()->count();
         $project_ongoing = Project::where('status','=',1)->where('area_type','=',$type)->get()->count();
         $project_completed = Project::where('status','=',2)->where('area_type','=',$type)->get()->count();
