@@ -321,28 +321,71 @@
                 });
 
                 </script>
-
-
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="card shadow mb-4 w-100">
-                            <!-- Card Header - Dropdown -->
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary">Latest Project Updates</h6>
+                            </div>
+                            <!-- Card Body -->
+                            <div class="card-body">
+                                <table class="table table-sm table-striped table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th width="20%">Project Name</th>
+                                            <th width="5%">As Of</th>
+                                            <th width="5%">Progress</th>
+                                            <th width="10%">Phase</th>
+                                            <th width="50%">Executive Summary</th>
+                                            <th width="10%">Project Manager</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach ($weekly_reports as $data)
+                                        <tr>
+                                            <td>
+                                                @if ($data->rag == 1)
+                                                <i class="fa-solid fa-circle" style="color:green"></i>
+                                                @elseif ($data->rag == 2)
+                                                    <i class="fa-solid fa-circle" style="color:orange"></i>
+                                                @elseif ($data->rag == 3)
+                                                    <i class="fa-solid fa-circle" style="color:red"></i>
+                                                @else
+                                                    <i class="fa-solid fa-circle" style="color:gray"></i>
+                                                @endif
+                                                <a href="/project/{{ $data->proj_id }}">{{ $data->short_name }}
+                                            </td>
+                                            <td>{{date_format(date_create($data->created_at),'M d')}}</td>
+                                            <td>{{$data->progress}}%</td>
+                                            <td>
+                                                @if ($data->phase == 1)
+                                                Planning
+                                                @elseif ($data->phase == 2)
+                                                Development
+                                                @elseif ($data->phase == 3)
+                                                Testing
+                                                @elseif ($data->phase == 4)
+                                                User Acceptance
+                                                @elseif ($data->phase == 5)
+                                                Live
+                                                @endif
+                                            </td>
+                                            <td>{{$data->executive}}</td>
+                                            <td>{{$data->pmname}}</td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    @if (count($crb) > 0)
+                    <div class="col-xl-12">
+                        <div class="card shadow mb-4 w-100">
                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                 <h6 class="m-0 font-weight-bold text-primary">Change Requests</h6>
-                                <!-- <div class="dropdown no-arrow">
-                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                        aria-labelledby="dropdownMenuLink">
-                                        <div class="dropdown-header">Dropdown Header:</div>
-                                        <a class="dropdown-item" href="#">Action</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">Something else here</a>
-                                    </div>
-                                </div> -->
                             </div>
                             <!-- Card Body -->
                             <div class="card-body">
@@ -400,6 +443,8 @@
                             </div>
                         </div>
                     </div>
+                    @endif
+                    @if (count($logs) > 0)
                     <div class="col-xl-12">
                         <div class="card shadow mb-4 w-100">
                             <!-- Card Header - Dropdown -->
@@ -422,7 +467,6 @@
                             </div>
                             <!-- Card Body -->
                             <div class="card-body">
-
                                 <table class="makethistable table table-sm table-striped table-bordered table-hover text-center" style="width: 100%">
                                     <thead>
                                         <tr>
@@ -445,6 +489,7 @@
                             </div>
                         </div>
                     </div>
+                    @endif
                 </div>
             </div><!-- /.container-fluid -->
         </div>
