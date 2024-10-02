@@ -60,11 +60,11 @@
                                             <tr>
                                                 <td>
                                                     @if ($data->status == 1)
-                                                        <span class="badge badge-primary">On-going</span>
+                                                        <span class="badge badge-primary">On-going ({{$data->progress}}%)</span>
                                                     @elseif ($data->status == 2)
                                                         <span class="badge badge-success">Completed</span>
                                                     @elseif ($data->status == 3)
-                                                        <span class="badge badge-warning">On-hold</span>
+                                                        <span class="badge badge-warning">On-hold ({{$data->progress}}%)</span>
                                                     @endif
                                                 </td>
                                                 <td>
@@ -157,11 +157,11 @@
                                             <tr>
                                                 <td>
                                                     @if ($data->status == 1)
-                                                        <span class="badge badge-primary">On-going</span>
+                                                        <span class="badge badge-primary">On-going ({{$data->progress}}%)</span>
                                                     @elseif ($data->status == 2)
                                                         <span class="badge badge-success">Completed</span>
                                                     @elseif ($data->status == 3)
-                                                        <span class="badge badge-warning">On-hold</span>
+                                                        <span class="badge badge-warning">On-hold ({{$data->progress}}%)</span>
                                                     @endif
                                                 </td>
                                                 <td>
