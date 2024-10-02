@@ -92,6 +92,7 @@
                         <option value="ABSI">ABSI</option>
                         <option value="ACQUIRO">ACQUIRO</option>
                         <option value="FINSI">FINSI</option>
+                        <option value="ASTI">ASTI</option>
                       </select>
                       @error('sponsor_sub')
                       <span class="invalid-feedback text-danger">{{ $message }}</span>
