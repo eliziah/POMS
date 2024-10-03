@@ -29,7 +29,7 @@ class DashboardController extends Controller
         $project_rag = array( $project_green,$project_amber,$project_red );
         $cpi = Project::where('status','<>',0)->where('status','<>',4)->where('cpi','<>',0)->avg('cpi');
         $spi = Project::where('status','<>',0)->where('status','<>',4)->where('spi','<>',0)->avg('spi');
-        $query_latest_weekly = '
+        $query_latest_weekly_in = '
         select projects.short_name,projects.proj_id, im.*, users.name as pmname  from (select t.*
         from weekly_reports t
         inner join (
@@ -40,9 +40,25 @@ class DashboardController extends Controller
         join projects on projects.id = im.project_id
         join users on users.id_user = projects.pm
         where projects.status = 1
+        where projects.area_type = "internal"
         order by im.rag desc;
         ';
-        $latest_weekly = DB::select($query_latest_weekly);
+        $query_latest_weekly_ex = '
+        select projects.short_name,projects.proj_id, im.*, users.name as pmname  from (select t.*
+        from weekly_reports t
+        inner join (
+            select project_id, max(workweek) as MaxWorkweek
+            from weekly_reports
+            group by project_id
+        ) tm on t.project_id = tm.project_id and t.workweek = tm.MaxWorkweek) as im
+        join projects on projects.id = im.project_id
+        join users on users.id_user = projects.pm
+        where projects.status = 1
+        where projects.area_type = "external"
+        order by im.rag desc;
+        ';
+        $latest_weekly_in = DB::select($query_latest_weekly_in);
+        $latest_weekly_ex = DB::select($query_latest_weekly_ex);
         $ledger_all_positive = Ledger::select('project_ledger.*')
                 ->where('projects.status','<>',0)
                 ->where('projects.status','<>',4)
@@ -114,7 +130,8 @@ class DashboardController extends Controller
             'consumed' => $consumed,
             'projects' => $project_list_ongoing,
             'rag_count' => $project_rag,
-            'weekly_reports' => $latest_weekly
+            'weekly_reports_in' => $latest_weekly_in,
+            'weekly_reports_ex' => $latest_weekly_ex
         ]);
     }
 
