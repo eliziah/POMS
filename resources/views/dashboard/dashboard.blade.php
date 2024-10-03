@@ -189,6 +189,7 @@
                             <div class="card-body">
                                 <table class="dashboard_table table table-sm table-striped table-bordered table-hover">
                                     <thead>
+                                        <th>Project ID</th>
                                         <th>Project Name</th>
                                         <th>Dept</th>
                                         <th>Start Date</th>
@@ -214,8 +215,9 @@
                                                 @else
                                                     <i class="fa-solid fa-circle" style="color:gray"></i>
                                                 @endif    
-                                                <a href="/project/{{ $data->proj_id }}">{{ $data->short_name }}
+                                                <a href="/project/{{ $data->proj_id }}">{{ $data->proj_id }}
                                             </td>
+                                            <td>{{ $data->short_name }}</td>
                                             <td>{{$data->sponsor_dept}}</td>
                                             <td>{{date_format(date_create($data->p_start),'M d, Y')}}</td>
                                             <td>{{date_format(date_create($data->p_live),'M d, Y')}}</td>
