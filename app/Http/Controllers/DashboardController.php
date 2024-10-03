@@ -29,7 +29,7 @@ class DashboardController extends Controller
         $project_rag = array( $project_green,$project_amber,$project_red );
         $cpi = Project::where('status','<>',0)->where('status','<>',4)->where('cpi','<>',0)->avg('cpi');
         $spi = Project::where('status','<>',0)->where('status','<>',4)->where('spi','<>',0)->avg('spi');
-        $query_latest_weekly_in = '
+        $query_latest_weekly_in = "
         select projects.short_name,projects.proj_id, im.*, users.name as pmname  from (select t.*
         from weekly_reports t
         inner join (
@@ -40,10 +40,10 @@ class DashboardController extends Controller
         join projects on projects.id = im.project_id
         join users on users.id_user = projects.pm
         where projects.status = 1
-        where projects.area_type = "internal"
+        where projects.area_type = 'internal'
         order by im.rag desc;
-        ';
-        $query_latest_weekly_ex = '
+        ";
+        $query_latest_weekly_ex = "
         select projects.short_name,projects.proj_id, im.*, users.name as pmname  from (select t.*
         from weekly_reports t
         inner join (
@@ -54,9 +54,9 @@ class DashboardController extends Controller
         join projects on projects.id = im.project_id
         join users on users.id_user = projects.pm
         where projects.status = 1
-        where projects.area_type = "external"
+        where projects.area_type = 'external'
         order by im.rag desc;
-        ';
+        ";
         $latest_weekly_in = DB::select($query_latest_weekly_in);
         $latest_weekly_ex = DB::select($query_latest_weekly_ex);
         $ledger_all_positive = Ledger::select('project_ledger.*')
