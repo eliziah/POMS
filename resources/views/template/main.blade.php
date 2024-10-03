@@ -293,14 +293,14 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a href="/pm" class="nav-link">
                                 <i class="nav-icon fa-solid fa-people-group"></i>
                                 <p>
                                     Project Managers
                                 </p>
                             </a>
-                        </li>
+                        </li> -->
                         @endif
                         @if (auth()->user()->role == 1)
                         <li class="nav-item">
@@ -357,7 +357,7 @@
                         </li>
                         @endif
                         @if (auth()->user()->role == 2)
-                        <li class="nav-item pt-3">
+                        <li class="nav-item pt-3 pb-3"  style="border-bottom: 1px solid #4f5962">
                             <a href="/guest/dashboard" class="nav-link">
                             <i class="nav-icon fa-solid fa-user-secret"></i>
                                 <p>
@@ -365,22 +365,22 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a href="/maintain/users" class="nav-link">
                             <i class="nav-icon fa-solid fa-wrench"></i>
                                 <p>
                                     Users Maintenance
                                 </p>
                             </a>
-                        </li>
-                        <li class="nav-item pb-3 " style="border-bottom: 1px solid #4f5962">
+                        </li> -->
+                        <!-- <li class="nav-item pb-3 ">
                             <a href="/maintain/projects" class="nav-link">
                             <i class="nav-icon fa-solid fa-diagram-project"></i>
                                 <p>
                                     Projects Maintenance
                                 </p>
                             </a>
-                        </li>
+                        </li> -->
                         @endif
                         <li class="nav-item mt-3" >
                             <a href="#" class="log-out nav-link">

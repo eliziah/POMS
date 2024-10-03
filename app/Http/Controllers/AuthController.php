@@ -47,6 +47,31 @@ class AuthController extends Controller
             'title' => 'Register',
         ]);
     }
+    
+    public function changepassword(Request $request)
+    {
+        $validated = $request->validate([
+            'oldpassword' => 'required',
+            'password' => 'required',
+            'passwordConfirm' => 'required|same:password'
+        ]);
+
+        //check if same as user password
+        if(!Hash::check($request->oldpassword, auth()->user()->password)){
+            Alert::error('Error', 'Old password did not match!');
+            return back();
+        }
+
+        User::where("id_user",auth()->user()->id_user)->update([
+            'password' => Hash::make($request->password)
+        ]);
+
+        Auth::logout();
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
+        Alert::success('Success', 'Password has been changed! Please re-login.');
+        return redirect('/login');
+    }
 
     public function process(Request $request)
     {

@@ -30,6 +30,7 @@ Route::get('/login', [AuthController::class, 'index'])->name('login')->middlewar
 Route::post('/login', [AuthController::class, 'authenticate']);
 Route::get('/register', [AuthController::class, 'register']);
 Route::post('/register', [AuthController::class, 'process']);
+Route::post('/changepassword', [AuthController::class, 'changepassword']);
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth');
 
 //route dashboard

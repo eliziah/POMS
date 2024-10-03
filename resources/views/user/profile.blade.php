@@ -8,7 +8,7 @@
             <div class="container-fluid">
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
-                    <div class="col-4 mt-3">
+                    <!-- <div class="col-4 mt-3">
                         <div class="card">
                             <form action="/profile" method="POST">
                             @csrf
@@ -17,7 +17,6 @@
                                     <h3 class="m-0 d-inline">My Profile</h3>
                                 </div>
                             </div>
-                            <!-- /.card-header -->
 
                             <div class="card-body">
                                 <div class="row">
@@ -77,7 +76,7 @@
                             </div>
                             </form>
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="col-4 mt-3">
                         <div class="card">
@@ -86,51 +85,54 @@
                                     <h3 class="m-0 d-inline">Change My Password</h3>
                                 </div>
                             </div>
-                            <!-- /.card-header -->
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <label for="name_group">Current Password</label>
-                                            <div name="name_group" class="input-group">
-                                                <input type="password" name="name" class="form-control @error('name') is-invalid @enderror">
-                                                @error('name')
-                                                <span class="invalid-feedback text-danger">{{ $message }}</span>
-                                                @enderror
+                            <form class="needs-validation" novalidate action="/changepassword" method="POST">
+                            @csrf
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label for="oldpassword">Current Password</label>
+                                                <div name="oldpassword" class="input-group">
+                                                    <input type="password" name="oldpassword" class="form-control @error('oldpassword') is-invalid @enderror">
+                                                    @error('oldpassword')
+                                                    <span class="invalid-feedback text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <label for="email_group">New Password</label>
-                                            <div name="email_group" class="input-group">
-                                                <input type="password" name="email" class="form-control @error('email') is-invalid @enderror">
-                                                @error('email')
-                                                <span class="invalid-feedback text-danger">{{ $message }}</span>
-                                                @enderror
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label for="password">New Password</label>
+                                                <div name="password" class="input-group">
+                                                    <input type="password" name="password" class="form-control @error('password') is-invalid @enderror">
+                                                    @error('password')
+                                                    <span class="invalid-feedback text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <label for="email_group">Confirm New Password</label>
-                                            <div name="email_group" class="input-group">
-                                                <input type="password" name="email" class="form-control @error('email') is-invalid @enderror">
-                                                @error('email')
-                                                <span class="invalid-feedback text-danger">{{ $message }}</span>
-                                                @enderror
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label for="passwordConfirm">Confirm New Password</label>
+                                                <div name="passwordConfirm" class="input-group">
+                                                    <input type="password" name="passwordConfirm" class="form-control @error('passwordConfirm') is-invalid @enderror">
+                                                    @error('passwordConfirm')
+                                                    <span class="invalid-feedback text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="card-footer ">
-                                <div class="row">
-                                    <div class="col-lg-12 text-right">
-                                        <button class="btn btn-warning" type="submit">Change Password</button>
+                                <div class="card-footer ">
+                                    <div class="row">
+                                        <div class="col-lg-12 text-right">
+                                            <button class="btn btn-warning" type="submit">Change Password</button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
