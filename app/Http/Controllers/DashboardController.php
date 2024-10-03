@@ -19,7 +19,7 @@ class DashboardController extends Controller
         }
         
         $project_list_ongoing = Project::where('status','=',1)->orderBy('rag','desc')->orderBy('id','desc')->get();
-        $project_all = Project::where('status','<>',0)->where('status','<>',4)->get()->count();
+        $project_all = Project::where('status','<>',0)->where('status','<>',4)->where('status','<>',5)->get()->count();
         $project_ongoing = Project::where('status','=',1)->get()->count();
         $project_completed = Project::where('status','=',2)->get()->count();
         $project_onhold = Project::where('status','=',3)->get()->count();
@@ -27,8 +27,8 @@ class DashboardController extends Controller
         $project_amber = Project::where('status','=',1)->where('rag','=',2)->get()->count();
         $project_red = Project::where('status','=',1)->where('rag','=',3)->get()->count();
         $project_rag = array( $project_green,$project_amber,$project_red );
-        $cpi = Project::where('status','<>',0)->where('status','<>',4)->where('cpi','<>',0)->avg('cpi');
-        $spi = Project::where('status','<>',0)->where('status','<>',4)->where('spi','<>',0)->avg('spi');
+        $cpi = Project::where('status','<>',0)->where('status','<>',4)->where('status','<>',5)->where('cpi','<>',0)->avg('cpi');
+        $spi = Project::where('status','<>',0)->where('status','<>',4)->where('status','<>',5)->where('spi','<>',0)->avg('spi');
         $query_latest_weekly_in = "
         select projects.short_name,projects.proj_id, im.*, users.name as pmname  from (select t.*
         from weekly_reports t
