@@ -39,8 +39,7 @@ class DashboardController extends Controller
         ) tm on t.project_id = tm.project_id and t.workweek = tm.MaxWorkweek) as im
         join projects on projects.id = im.project_id
         join users on users.id_user = projects.pm
-        where projects.status = 1 and
-        where projects.area_type = 'internal'
+        where projects.status = 1 and projects.area_type = 'internal'
         order by im.rag desc;
         ";
         $query_latest_weekly_ex = "
@@ -53,8 +52,7 @@ class DashboardController extends Controller
         ) tm on t.project_id = tm.project_id and t.workweek = tm.MaxWorkweek) as im
         join projects on projects.id = im.project_id
         join users on users.id_user = projects.pm
-        where projects.status = 1 and
-        where projects.area_type = 'external'
+        where projects.status = 1 and projects.area_type = 'external'
         order by im.rag desc;
         ";
         $latest_weekly_in = DB::select($query_latest_weekly_in);
