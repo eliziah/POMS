@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\POCController;
 use App\Http\Controllers\ProjectManagerController;
 use App\Http\Controllers\CRScheduleController;
 use App\Http\Controllers\CRBudgetController;
@@ -75,6 +76,10 @@ Route::get('/guest/dashboard', [DashboardController::class, 'guest']);
 //project managers
 Route::get('/pm/dashboard', [ProjectManagerController::class, 'pmdashboard'])->middleware('auth');
 Route::resource('/pm', ProjectManagerController::class)->middleware('auth');
+
+//POCs
+
+Route::get('/poc', [POCController::class, 'index'])->middleware('auth');
 
 
 //kpi calculators (batch)
