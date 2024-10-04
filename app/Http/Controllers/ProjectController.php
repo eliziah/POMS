@@ -31,12 +31,16 @@ class ProjectController extends Controller
         $x_projects = Project::select('projects.*','users.name as pmname')
                             ->where('projects.area_type','=','External')
                             ->where('projects.status','<>',0)
+                            ->where('projects.status','<>',4)
+                            ->where('projects.status','<>',5)
                             ->join('users','users.id_user','=','projects.pm')
                             ->orderBy('projects.id','desc');
 
         $n_projects = Project::select('projects.*','users.name as pmname')
                             ->where('projects.area_type','=','Internal')
                             ->where('projects.status','<>',0)
+                            ->where('projects.status','<>',4)
+                            ->where('projects.status','<>',5)
                             ->join('users','users.id_user','=','projects.pm')
                             ->orderBy('projects.id','desc');
         
