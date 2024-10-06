@@ -358,7 +358,7 @@
         labels: ["Green", "Amber", "Red"],
         datasets: [{
             data: @json($rag_count),
-            backgroundColor: ["#78e08f","#eb2f06","#fa983a"],
+            backgroundColor: ["#78e08f","#fa983a","#eb2f06"],
             hoverBorderColor: "rgba(234, 236, 244, 1)",
         }],
         },
