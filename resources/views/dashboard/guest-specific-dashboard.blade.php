@@ -355,7 +355,7 @@
     var myPieChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
-        labels: ["Green", "Red", "Amber"],
+        labels: ["Green", "Amber", "Red"],
         datasets: [{
             data: @json($rag_count),
             backgroundColor: ["#78e08f","#eb2f06","#fa983a"],
