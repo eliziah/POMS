@@ -100,10 +100,10 @@
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                             Rec Budget</div>
-                                        <div class="h6 mb-0 font-weight-bold text-gray-800">₱ {{number_format($budget,2,'.',',')}}</div>
+                                        <div class="h6 mb-0 font-weight-bold text-gray-800">{{number_format($budget,2,'.',',')}}</div>
                                     </div>
                                     <div class="col-auto">
-                                        <i class="fas fa-arrow-up fa-2x text-gray-300"></i>
+                                        <i class="fas fa-peso-sign fa-2x text-gray-300"></i>
                                     </div>
                                 </div>
                             </div>
@@ -189,11 +189,9 @@
                             <div class="card-body">
                                 <table class="dashboard_table table table-sm table-striped table-bordered table-hover">
                                     <thead>
-                                        <th>Project ID</th>
+                                        <th width="20%">Project ID</th>
                                         <th>Project Name</th>
-                                        <th>Dept</th>
-                                        <th>Start Date</th>
-                                        <th>Live Date</th>
+                                        <th width="15%">Live Date</th>
                                         <th>Phase</th>
                                     </thead>
                                     <tbody>
@@ -218,8 +216,6 @@
                                                 <a href="/project/{{ $data->proj_id }}">{{ $data->proj_id }}
                                             </td>
                                             <td>{{ $data->short_name }}</td>
-                                            <td>{{$data->sponsor_dept}}</td>
-                                            <td>{{date_format(date_create($data->p_start),'M d, Y')}}</td>
                                             <td>{{date_format(date_create($data->p_live),'M d, Y')}}</td>
                                             <td>
                                                 @if($data->phase == 1)

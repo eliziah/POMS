@@ -31,7 +31,9 @@
                                 <div class="row">
                                     <div class="col-lg-6 text-left">
                                         <h3 class="m-0 d-inline">Internal Projects</h3>
+                                        @if(auth()->user()->role == 2)
                                         <a href="/project/create/internal" class="ml-2 d-inline btn btn-sm btn-outline-primary"><i class="fa-solid fa-plus"></i></a>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -129,7 +131,9 @@
                             <div class="card-header">
                                 <div class="text-left">
                                     <h3 class="d-inline m-0">External Projects</h3>
+                                    @if(auth()->user()->role == 2)
                                     <a href="/project/create/external" class="ml-2 d-inline btn btn-sm btn-outline-primary"><i class="fa-solid fa-plus"></i></a>
+                                    @endif
                                 </div>
                             </div>
                             <!-- /.card-header -->

@@ -14,6 +14,7 @@ use App\Http\Controllers\WeeklyController;
 use App\Http\Controllers\KPIController;
 use App\Http\Controllers\MOMController;
 use App\Http\Controllers\PresentationController;
+use App\Http\Controllers\MailController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -80,6 +81,9 @@ Route::resource('/pm', ProjectManagerController::class)->middleware('auth');
 //POCs
 
 Route::get('/poc', [POCController::class, 'index'])->middleware('auth');
+Route::get('/poc/create', [POCController::class, 'create'])->middleware('auth');
+Route::get('/poc/{id}', [POCController::class, 'show'])->middleware('auth');
+Route::post('/poc', [POCController::class, 'store'])->middleware('auth');
 
 
 //kpi calculators (batch)
@@ -91,3 +95,5 @@ Route::resource('/profile', UserController::class)->middleware('auth');
 Route::resource('/mom', MOMController::class)->middleware('auth');
 
 Route::resource('/present', PresentationController::class)->middleware('auth');
+
+Route::get('mail/remindweeklies', [MailController::class, 'index']);

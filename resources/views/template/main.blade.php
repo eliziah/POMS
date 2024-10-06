@@ -313,7 +313,7 @@
                         </li>
                         @endif
                         <li class="nav-item">
-                            <a href="/project" class="nav-link">
+                            <a href="/poc" class="nav-link">
                                 <i class="nav-icon fa-solid fa-flask"></i>
                                 <p>
                                     POCs
@@ -461,6 +461,9 @@
 
         function minus_field($aa){
             $aa.parentElement.parentElement.remove();
+        }
+        function minus_field_criteria($aa){
+            $aa.parentElement.parentElement.parentElement.remove();
         }
 
         

@@ -59,12 +59,12 @@ class WeeklyController extends Controller
             return redirect()->back();
         }else{
             // get friday last week
-            $friday = date( 'Y-m-d', strtotime( 'friday last week' ) );
-            $friday_text = date( 'F d', strtotime( 'friday last week' ) );
+            $friday = date( 'Y-m-d', strtotime( 'thursday last week' ) );
+            $friday_text = date( 'F d', strtotime( 'thursday last week' ) );
 
             // get thursday this week
-            $thursday = date( 'Y-m-d', strtotime( 'thursday this week' ) );
-            $thursday_text = date( 'F d', strtotime( 'thursday this week' ) );
+            $thursday = date( 'Y-m-d', strtotime( 'wednesday this week' ) );
+            $thursday_text = date( 'F d', strtotime( 'wednesday this week' ) );
 
             $project_details = Project::where('proj_id','=',$id)->first();
             return view('weekly.weekly-add',[

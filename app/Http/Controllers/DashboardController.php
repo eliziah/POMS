@@ -223,7 +223,7 @@ class DashboardController extends Controller
             return redirect()->back();    
         }
 
-        $project_list_ongoing = Project::where('area_type','=',$type)->where('status','<>',5)->where('status','<>',4)->where('status','<>',0)->orderBy('status','asc')->orderBy('id','desc')->get();
+        $project_list_ongoing = Project::where('area_type','=',$type)->where('status','<>',5)->where('status','<>',4)->where('status','<>',0)->orderBy('status','asc')->orderBy('rag','desc')->orderBy('id','desc')->get();
         $project_all = Project::where('status','<>',0)->where('area_type','=',$type)->where('status','<>',4)->where('status','<>',5)->get()->count();
         $project_ongoing = Project::where('status','=',1)->where('area_type','=',$type)->get()->count();
         $project_completed = Project::where('status','=',2)->where('area_type','=',$type)->get()->count();
@@ -234,6 +234,38 @@ class DashboardController extends Controller
         $project_rag = array( $project_green,$project_amber,$project_red );
         $cpi = Project::where('status','<>',0)->where('area_type','=',$type)->where('status','<>',4)->where('cpi','<>',0)->avg('cpi');
         $spi = Project::where('status','<>',0)->where('area_type','=',$type)->where('status','<>',4)->where('spi','<>',0)->avg('spi');
+        $query_latest_weekly_in = "
+        select projects.short_name,projects.proj_id, im.*, users.name as pmname  from (select t.*
+        from weekly_reports t
+        inner join (
+            select project_id, max(workweek) as MaxWorkweek
+            from weekly_reports
+            group by project_id
+        ) tm on t.project_id = tm.project_id and t.workweek = tm.MaxWorkweek) as im
+        join projects on projects.id = im.project_id
+        join users on users.id_user = projects.pm
+        where projects.status = 1 and projects.area_type = 'internal' and projects.rag = 3
+        order by im.rag desc;
+        ";
+        $query_latest_weekly_ex = "
+        select projects.short_name,projects.proj_id, im.*, users.name as pmname  from (select t.*
+        from weekly_reports t
+        inner join (
+            select project_id, max(workweek) as MaxWorkweek
+            from weekly_reports
+            group by project_id
+        ) tm on t.project_id = tm.project_id and t.workweek = tm.MaxWorkweek) as im
+        join projects on projects.id = im.project_id
+        join users on users.id_user = projects.pm
+        where projects.status = 1 and projects.area_type = 'external' and projects.rag = 3
+        order by im.rag desc;
+        ";
+
+        if($type == 'external'){
+            $latest_weekly_in = DB::select($query_latest_weekly_ex);
+        }else{
+            $latest_weekly_in = DB::select($query_latest_weekly_in);
+        }
 
         $ledger_all_positive = Ledger::select('project_ledger.*')
             ->where('projects.status','<>',0)
@@ -283,7 +315,8 @@ class DashboardController extends Controller
             'budget' => $budget,
             'cost' => $cost,
             'projects' => $project_list_ongoing,
-            'rag_count' => $project_rag
+            'rag_count' => $project_rag,
+            'red_updates' => $latest_weekly_in
         ]);
     }
 }

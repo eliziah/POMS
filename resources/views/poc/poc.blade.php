@@ -28,6 +28,16 @@
                     @if(count($pocs) > 0)
                     <div class="col-12">
                         <div class="card border-left-warning shadow  ">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-lg-6 text-left">
+                                        <h3 class="m-0 d-inline">POC List</h3>
+                                        @if(auth()->user()->role == 2)
+                                        <a href="/poc/create" class="ml-2 d-inline btn btn-sm btn-outline-primary"><i class="fa-solid fa-plus"></i></a>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <table class="project_table table table-sm table-striped table-bordered table-hover text-center"
@@ -41,7 +51,6 @@
                                             <th>Department</th>
                                             <th>Product</th>
                                             <th>Platform</th>
-                                            <th>Project Manager</th>
                                             <th>Start Date</th>
                                             <th>Live Date</th>
                                             <th>Eval Date</th>
@@ -56,9 +65,9 @@
                                                     @elseif ($data->status == 2)
                                                         <span class="badge badge-warning">On-hold ({{$data->progress}}%)</span>
                                                     @elseif ($data->status == 3)
-                                                        <span class="badge badge-success">Passed</span>
-                                                    @elseif ($data->status == 4)
                                                         <span class="badge badge-danger">Failed</span>
+                                                    @elseif ($data->status == 4)
+                                                        <span class="badge badge-success">Passed</span>
                                                     @endif
                                                 </td>
                                                 <td>
@@ -77,7 +86,7 @@
                                                     @else
                                                         <i class="fa-solid fa-circle" style="color:gray"></i>
                                                     @endif    
-                                                    <a href="/project/{{ $data->poc_id }}">{{ $data->poc_id }}
+                                                    <a href="/poc/{{ $data->poc_id }}">{{ $data->poc_id }}
                                                 </td>
                                                 <td><b>{{ $data->short_name }}</b></td>
                                                 <td>
@@ -92,7 +101,6 @@
                                                 <td>{{$data->department}}</td>
                                                 <td>{{$data->product}}</td>
                                                 <td>{{$data->platform}}</td>
-                                                <td>{{ $data->pmname }}</td>
                                                 <td>{{date_format(date_create($data->p_start),'M d, Y')}}</td>
                                                 <td>{{date_format(date_create($data->p_live),'M d, Y')}}</td>
                                                 <td>{{date_format(date_create($data->p_evaluation),'M d, Y')}}</td>
