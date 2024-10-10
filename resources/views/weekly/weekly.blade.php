@@ -1,5 +1,5 @@
 @extends('template.main')
-@section('title', 'All Projects')
+@section('title', 'Weekly Reports')
 @section('content')
 
     <div class="content-wrapper">
@@ -29,6 +29,42 @@
             <div class="container-fluid">
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table class="table table-sm table-striped table-bordered table-hover text-center"
+                                    style="width: 100%">
+                                    <thead>
+                                        <tr>
+                                            <th width="30%">Project Name</th>
+                                            @for($i = 5; $i >= 0; $i--)
+                                            <th>{{$week_now - $i}}</th>
+                                            @endfor
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($projects as $data)
+                                            <tr>
+                                                <td>{{ $data->short_name }}</td>
+                                                @for($i = 5; $i >= 0; $i--)
+                                                    <td>
+                                                    @foreach($all_weekly as $weekly)
+                                                        @if($weekly->workweek == ($week_now - $i) && $weekly->project_id == $data->id)
+                                                        YES
+                                                        @endif
+                                                    @endforeach
+                                                    </td>
+                                                @endfor
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.row -->
+                    </div><!-- /.container-fluid -->
                     @if(count($all_weekly) > 0)
                     <div class="col-12">
                         <div class="card">

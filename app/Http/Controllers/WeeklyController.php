@@ -13,15 +13,22 @@ class WeeklyController extends Controller
 {
     public function index()
     {
+        $week = date( 'W', strtotime( 'monday this week' ) );
+
         $weekly = Weekly::select('weekly_reports.*','projects.short_name as project_name')
                     -> join('projects','projects.id','=','weekly_reports.project_id');
+        $projects = Project::select()->where('status','=',1);
+
         if( auth()->user()->role == 1 ){
+            $projects->where('pm','=',auth()->user()->id_user);
             $weekly->where('projects.pm','=',auth()->user()->id_user);
         }
-
+        $all_projects = $projects->get();
         $all_weekly = $weekly->orderBy('weekly_reports.workweek','desc')->orderBy('weekly_reports.id','desc')->get();
         return view('weekly.weekly',[
-                'all_weekly' => $all_weekly
+                'all_weekly' => $all_weekly,
+                'week_now' => $week,
+                'projects'=>$all_projects
             ]);
 
     }
