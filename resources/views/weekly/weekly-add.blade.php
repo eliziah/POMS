@@ -119,7 +119,7 @@
                   <div class="col-lg-12">
                     <div class="form-group">
                         <label for="executive">Executive Summary  <i class="text-secondary fa-solid fa-question-circle" data-toggle="tooltip" data-placement="top" data-html="true" title="A summary of your project update for this reporting week. An executive must be able to understand all your updates by reading this executive update alone.<br/><br/>Minimum of 150 Characters;<br/>Maximum of 255 Characters" ></i></label>
-                        <textarea name="executive" placeholder="This is required. All on-going project must have an executive update." id="executive" minlength="150" maxlength="255" class="form-control @error('executive') is-invalid @enderror" rows="2">{{old('executive')}}</textarea>
+                        <textarea name="executive" placeholder="This is required. All on-going project must have an executive update." id="executive" minlength="60" maxlength="255" class="form-control @error('executive') is-invalid @enderror" rows="2">{{old('executive')}}</textarea>
                         @error('executive')
                         <span class="invalid-feedback text-danger">{{ $message }}</span>
                         @enderror

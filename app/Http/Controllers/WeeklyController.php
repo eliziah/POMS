@@ -89,7 +89,7 @@ class WeeklyController extends Controller
             'gate' => 'required',
             'rag' => 'required',
             'phase' => 'required',
-            'executive' => 'required|max:255|min:150',
+            'executive' => 'required|max:255|min:60',
             'highlights' => 'max:1000',
             'risks' => 'max:1000',
             'help' => 'max:1000',
