@@ -676,6 +676,107 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="row">
+                                            <div class="col-lg-12 mx-5 my-3">
+                                                    <a href="/weeklyreport/create/{{$project->proj_id}}" class="ml-2 d-inline btn btn-primary"><i class="fa-solid fa-plus"></i> Add Weekly Report</a>
+                                            </div>
+                                            <div class="col-lg-12"> 
+                                                
+                                                @foreach ($weekly as $week)
+                                                <div class="card mx-5 my-3">
+                                                    <div class="card-body">
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                <div class="row">
+                                                                    <div class="col-lg-8 mb-3">
+                                                                        <h4><b>Work Week {{$week->workweek}}</b></h4>
+                                                                        <h6>{{date_format(date_create($week->start),'M d, Y')}} to {{date_format(date_create($week->end),'M d, Y')}}</h6>
+                                                                    </div>
+                                                                    <div class="col-lg-4">
+                                                                        <div class="row text-right">
+                                                                            <div class="col-lg-6">
+                                                                                <h6><b>RAG:</b> 
+                                                                                @if ($week->rag == 1)
+                                                                                    <span class="text-success">GREEN</span>
+                                                                                @elseif ($week->rag == 2)
+                                                                                    <span class="text-warning">AMBER</span>
+                                                                                @elseif ($week->rag == 3)
+                                                                                    <span class="text-danger">RED</span>
+                                                                                @else
+                                                                                    <span class="text-dark">GRAY</span>
+                                                                                @endif
+                                                                                </h6>
+                                                                            </div>
+                                                                            <div class="col-lg-6">
+                                                                                <h6><b>Progress:</b> {{$week->progress}}%</h6>
+                                                                            </div>
+                                                                            <div class="col-lg-6">
+                                                                                <h6><b>Gate:</b> Gate {{$week->gate}}</h6>
+                                                                            </div>
+                                                                            <div class="col-lg-6">
+                                                                                <h6><b>Phase:</b> 
+                                                                                @if($week->phase == 1)
+                                                                                Planning
+                                                                                @elseif($week->phase == 2)
+                                                                                Dev
+                                                                                @elseif($week->phase == 3)
+                                                                                QAT
+                                                                                @elseif($week->phase == 4)
+                                                                                UAT
+                                                                                @elseif($week->phase == 5)
+                                                                                Live
+                                                                                @endif
+                                                                                </h6>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-12">
+                                                                <div class="row">
+                                                                    <div class="col-lg-12">
+                                                                        <h6><b><u>Executive Summary</u></b><br> 
+                                                                        {{$week->executive}}</h6>
+                                                                    </div>
+                                                                    @if($week->highlights)
+                                                                    <div class="col-lg-12 border border-success p-2 rounded mb-2">
+                                                                        <h6><b><u class="text-success">Highlights</u></b><br>
+                                                                        <?php echo nl2br(htmlspecialchars($week->highlights)); ?></h6> 
+                                                                    </div>
+                                                                    @endif
+                                                                    @if($week->nextsteps)
+                                                                    <div class="col-lg-12 border border-primary p-2 rounded mb-2">
+                                                                        <h6><b><u class="text-primary">Next Steps</u></b><br>
+                                                                         <?php echo nl2br(htmlspecialchars($week->nextsteps)); ?></h6> 
+                                                                    </div>
+                                                                    @endif
+                                                                    @if($week->risks)
+                                                                    <div class="col-lg-12 border border-danger p-2 rounded mb-2">
+                                                                        <h6><b><u class="text-danger">Risks</u></b><br>
+                                                                        <?php echo nl2br(htmlspecialchars($week->risks)); ?></h6> 
+                                                                    </div>
+                                                                    @endif
+                                                                    @if($week->help)
+                                                                    <div class="col-lg-12 border border-danger p-2 rounded mb-2">
+                                                                        <h6><b><u class="text-danger">Help Needed</u></b><br>
+                                                                        <?php echo nl2br(htmlspecialchars($week->help)); ?></h6> 
+                                                                    </div>
+                                                                    @endif
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="tab-pane fade " id="weekly" role="tabpanel" aria-labelledby="weekly-tab">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
                                             <div class="col-lg-12 mb-3">
                                                     <a href="/weeklyreport/create/{{$project->proj_id}}" class="ml-2 d-inline btn btn-primary"><i class="fa-solid fa-plus"></i> Add Weekly Report</a>
                                             </div>
@@ -837,7 +938,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- MOMs Tab -->
                             <div class="tab-pane fade" id="mom" role="tabpanel" aria-labelledby="mom-tab">
                                 <div class="card">

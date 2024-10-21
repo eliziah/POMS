@@ -417,7 +417,6 @@ class ProjectController extends Controller
                 ->where('projects.proj_id','=',$id)
                 ->join('projects','projects.id','=','weekly_reports.project_id')    
                 ->orderBy('weekly_reports.workweek','asc')
-                ->limit(5)  
                 ->get();
 
         
