@@ -416,7 +416,7 @@ class ProjectController extends Controller
         $weekly = Weekly::select('weekly_reports.*')
                 ->where('projects.proj_id','=',$id)
                 ->join('projects','projects.id','=','weekly_reports.project_id')    
-                ->orderBy('weekly_reports.workweek','asc')
+                ->orderBy('weekly_reports.workweek','desc')
                 ->get();
 
         
