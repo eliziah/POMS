@@ -17,13 +17,29 @@
                                 
                             </div>
                             <div class="col-lg-1 text-center">
-                                <h3><span class="badge badge-success">CPI .98</span></h3>
+                                @if ($cpi < .75)
+                                <h3><span class="badge badge-danger">CPI {{number_format((float)$cpi, 2, '.', '')}}</span></h3>
+                                @elseif ($cpi < .85)
+                                <h3><span class="badge badge-warning">CPI {{number_format((float)$cpi, 2, '.', '')}}</span></h3>
+                                @elseif ($cpi < 1.5)
+                                <h3><span class="badge badge-success">CPI {{number_format((float)$cpi, 2, '.', '')}}</span></h3>
+                                @elseif ($cpi >= 1.5)
+                                <h3><span class="badge blink_me badge-success">CPI {{number_format((float)$cpi, 2, '.', '')}}</span></h3>
+                                @endif
                             </div>
                             <div class="col-lg-4 text-center">
                                 <h3><b>IPG PROJECT MANAGEMENT OFFICE</b></h3>
                             </div>
-                            <div class="col-lg-1 text-center">
-                                <h3><span class="badge badge-warning">SPI .76</span></h3>
+                            <div class="col-lg-1 text-center ">
+                                @if ($spi < .75)
+                                <h3><span class="badge badge-danger">SPI {{number_format((float)$spi, 2, '.', '')}}</span></h3>
+                                @elseif ($spi < .85)
+                                <h3><span class="badge badge-warning">SPI {{number_format((float)$spi, 2, '.', '')}}</span></h3>
+                                @elseif ($spi < 1.5)
+                                <h3><span class="badge badge-success">SPI {{number_format((float)$spi, 2, '.', '')}}</span></h3>
+                                @elseif ($spi >= 1.5)
+                                <h3><span class="badge blink_me badge-success">SPI {{number_format((float)$spi, 2, '.', '')}}</span></h3>
+                                @endif
                             </div>
                             <div class="col-lg-3">
                                 
