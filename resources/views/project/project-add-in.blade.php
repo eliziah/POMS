@@ -58,7 +58,16 @@
                       @enderror
                     </div>
                   </div>
-                  <div class="col-lg-3">
+                  <div class="col-lg-2">
+                    <div class="form-group">
+                      <label for="t3_id">T3 Project ID</label>
+                      <input type="text" name="t3_id" class="form-control @error('t3_id') is-invalid @enderror" id="t3_id" placeholder="T3 Project ID" value="{{old('t3_id')}}" required>
+                      @error('t3_id')
+                      <span class="invalid-feedback text-danger">{{ $message }}</span>
+                      @enderror
+                    </div>
+                  </div>
+                  <div class="col-lg-2">
                     <div class="form-group">
                       <label for="short_name">Short Project Name</label>
                       <input type="text" name="short_name" class="form-control @error('short_name') is-invalid @enderror" id="short_name" placeholder="Short Project Name" value="{{old('short_name')}}" required>
@@ -67,7 +76,7 @@
                       @enderror
                     </div>
                   </div>
-                  <div class="col-lg-5">
+                  <div class="col-lg-4">
                     <div class="form-group">
                       <label for="name">Long Project Name</label>
                       <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="Long Project Name" value="{{old('name')}}" required>

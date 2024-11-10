@@ -31,9 +31,9 @@
                             <li class="nav-item">
                                 <a class="nav-link active" id="details-tab" data-toggle="tab" href="#details" role="tab" aria-controls="details" aria-selected="true">Details</a>
                             </li>
-                            <li class="nav-item d-none d-lg-flex">
+                            <!-- <li class="nav-item d-none d-lg-flex">
                                 <a class="nav-link" id="ledger-tab" data-toggle="tab" href="#ledger" role="tab" aria-controls="ledger" aria-selected="false">Ledger</a>
-                            </li>
+                            </li> -->
                             <li class="nav-item">
                                 <a class="nav-link" id="artifacts-tab" data-toggle="tab" href="#artifacts" role="tab" aria-controls="artifacts" aria-selected="false">Artifacts</a>
                             </li>
@@ -92,8 +92,8 @@
                                                     <div class="col-lg-6 text-lg-right text-xl-right text-center">
                                                         <div class="row">
                                                             <div class="col-lg-12 ">
-                                                                <h4 class="mr-2 d-inline"><span class="badge badge-pill badge-success">CPI {{number_format((float)$cpi, 2, '.', '')}}</span></h4>
-                                                                <h4 class="mr-2 d-inline"><span class="badge badge-pill badge-warning">SPI {{number_format((float)$spi, 2, '.', '')}}</span></h4>
+                                                                <h4 class="mr-2 d-inline"><span class="badge badge-pill badge-success">CPI {{number_format((float)$project->cpi, 2, '.', '')}}</span></h4>
+                                                                <h4 class="mr-2 d-inline"><span class="badge badge-pill badge-warning">SPI {{number_format((float)$project->spi, 2, '.', '')}}</span></h4>
                                                                 <h4 class="mr-2 d-inline"><span class="badge badge-pill badge-secondary">FW {{number_format((float)78.2938, 2, '.', '')}}%</span></h4>
                                                                 <h4 class="mr-2 d-inline"><span class="badge badge-pill badge-primary">Progress {{$project->progress}}%</span></h4>
                                                             </div>
@@ -244,7 +244,7 @@
                                                                 <span><b>Earned Value:</b><br/> Php {{number_format($earned_value,2,'.',',')}}</span>
                                                             </div>
                                                             <div class="col-lg-12 mt-3">
-                                                                <span><b>Actual Cost:</b><br/> Php {{number_format($actual_cost,2,'.',',')}}</span>
+                                                                <span><b>Actual Cost:</b><br/> Php {{number_format($project->actual_cost,2,'.',',')}}</span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -344,7 +344,7 @@
                                 </div>
                             </div>
                             <!-- Project Ledger Tab -->
-                            <div class="tab-pane fade " id="ledger" role="tabpanel" aria-labelledby="ledger-tab">
+                            <!-- <div class="tab-pane fade " id="ledger" role="tabpanel" aria-labelledby="ledger-tab">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="row">
@@ -457,7 +457,7 @@
                                         </form>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- Project Artifacts Tab -->
                             <div class="tab-pane fade" id="artifacts" role="tabpanel" aria-labelledby="artifacts-tab">
                                 <form class="needs-validation" novalidate action="/artifact/batchupdate" method="POST">

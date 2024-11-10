@@ -205,6 +205,7 @@ class ProjectController extends Controller
             'short_name' => 'required|max:37',
             'description' => 'required|max:170|min:115',
             'area_type' => 'required',
+            't3_id' => 'required',
             'initiative_type' => 'required',
             'sponsor_name' => 'required',
             'sponsor_dept' => 'required',
@@ -227,11 +228,12 @@ class ProjectController extends Controller
         $project->sponsor_name = $request->input('sponsor_name');
         $project->sponsor_dept = $request->input('sponsor_dept');
         $project->sponsor_sub = $request->input('sponsor_sub');
+        $project->t3_id = $request->input('t3_id');
         $project->pm = $request->input('pm');
         $project->p_start = $request->input('p_start');
         $project->p_live = $request->input('p_live');
         $project->p_close = $request->input('p_close');
-        $project->budget = $request->input('budget');
+        $project->overall_budget = $request->input('budget');
         $project->artifact = $request->input('artifact');
         $project->repository = $request->input('repository');
         $is_saved = $project->save();
@@ -243,13 +245,13 @@ class ProjectController extends Controller
         $this->initialize_project_artifacts($project->id,$request->input('artifact'));
 
         // Insert initial budget in legder
-        Ledger::insert([
-            'project_id'=> $project->id,
-            'cost_type'=>1,
-            'cost_component'=>1,
-            'description'=>'Initial Approved Budget',
-            'value'=>$request->input('budget')
-        ]);
+        // Ledger::insert([
+        //     'project_id'=> $project->id,
+        //     'cost_type'=>1,
+        //     'cost_component'=>1,
+        //     'description'=>'Initial Approved Budget',
+        //     'value'=>$request->input('budget')
+        // ]);
 
         //Insert Log
         $my_user_id = auth()->user()->id_user;

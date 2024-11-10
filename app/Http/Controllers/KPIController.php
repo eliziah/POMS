@@ -7,6 +7,7 @@ use App\Models\Project;
 use App\Models\Ledger;
 use App\Models\Artifact;
 use App\Models\User;
+use App\Models\T3Calls;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class KPIController extends Controller
@@ -37,28 +38,57 @@ class KPIController extends Controller
         // Check if PMO Head, if not, redirect back
         if( auth()->user()->role == 2 ){
 
+            $auth_result = $this->CallAPI("POST", "https://absi-t3.hcx.com.ph/custom-time-tracker-api/public/api/users/login", array("password"=> env('T3_PASSWORD'),"username"=> env('T3_USERNAME')));
+            $auth_arr = json_decode($auth_result);
 
+            // $prj_result = $this->CallAPI("POST", "https://absi-t3.hcx.com.ph/custom-time-tracker-api/public/api/custom/financials", array("project_id"=> "1242"), ["Api-Token: ".$auth_arr->data->api_token]);
+            // $prj_arr = json_decode($prj_result);
+
+            // var_dump($prj_arr->data->actual_cost); exit;
+
+            // var_dump($prj_arr->data->api_token); exit;
             // 1. GET ALL ON-GOING PROJECTS
             $active_projects = Project::where('status',1)->get();
 
             // 2. FOR EACH OF THE PROJECT, UPDATE KPIs
             foreach ($active_projects as $key => $value) {
 
-                // 2.2 CPI - GET ACTUAL COST OF THE PROJECT\
-                $ledger_all_negative = Ledger::select('project_ledger.*')
-                        ->where('project_ledger.project_id','=',$value->id)
-                        ->where('project_ledger.status','=',1)
-                        ->where('project_ledger.cost_type','=',2)
-                        ->get();
-                $actual_cost = $ledger_all_negative->sum('value');
+                // FOR COST PERFORMANCE INDEX (CPI)
+                // 2.1 CHECK IF ACTIVE PROJECT HAS T3 ID
+                if ($value->t3_id){
+                    
+                    // CALL API TO GET T3 FULLY LOADED AND ACTUALS
+                    $prj_result = $this->CallAPI("POST", "https://absi-t3.hcx.com.ph/custom-time-tracker-api/public/api/custom/financials", array("project_id"=> $value->t3_id), ["Api-Token: ".$auth_arr->data->api_token]);
+                    $prj_arr = json_decode($prj_result);
 
-                // 2.3 CPI - GET EARNED COST VALUE OF THE PROJECT (Actual Budget * Progress)
-                $earned_value = $value->budget * ($value->progress/100);
+                    // SAVE PROJECT ID AND RESPONSE IN T3 TABLE
+                    T3Calls::create(['project_id'=>$value->id,'project_name'=>$value->short_name,'response'=>$prj_result]);
 
-                // 2.4 CPI - GET ACTUAL CPI OF THE PROJECT (Earned Cost Value / Actual Cost)
-                $cpi = 0;       
-                if ($actual_cost != 0){ 
-                    $cpi = $earned_value / $actual_cost;
+                    // IF STATUS CODE OF T3 API CALL IS 200
+                    if($prj_arr->status_code = 200){
+
+                        // INITIALIZE ACTUAL COST AND BUDGET VARIABLES
+                        $actual_cost = $prj_arr->data->actual_cost;
+                        $fully_loaded_cost = $prj_arr->data->fully_loaded_cost;
+
+                        // GET EARNED COST VALUE OF THE PROJECT (Actual Budget * Progress)
+                        $earned_value = $fully_loaded_cost * ($value->progress/100);
+
+                        // GET ACTUAL CPI OF THE PROJECT (Earned Cost Value / Actual Cost)
+                        $cpi = 0;       
+                        if ($actual_cost != 0){ 
+                            $cpi = $earned_value / $actual_cost;
+                        }
+                        
+                        // SAVE CPI
+                        $project_budget_save = Project::findOrFail($value->id);
+                        $project_budget_save->cpi = $cpi;
+                        $project_budget_save->budget = $fully_loaded_cost;
+                        $project_budget_save->actual_cost = $actual_cost;
+                        $project_budget_save->save();
+
+                    }
+                    
                 }
 
                 // 2.5 SPI - GET ACTUAL CURRENT DURATION
@@ -95,7 +125,6 @@ class KPIController extends Controller
 
                 // 2.12 SAVE PROJECT
                 $project_save = Project::findOrFail($value->id);
-                $project_save->cpi = $cpi;
                 $project_save->spi = $spi;
                 $project_save->fw = $fw;
                 $project_save->save();
@@ -110,6 +139,45 @@ class KPIController extends Controller
             Alert::error('Error', 'You do not have the permission to perform this action.');
             return redirect('/');
         }
+    }
+    // Method: POST, PUT, GET etc
+    // Data: array("param" => "value") ==> index.php?param=value
+
+    public function CallAPI($method, $url, $data = false, $headers = false){
+        $curl = curl_init();
+
+        switch ($method)
+        {
+            case "POST":
+                curl_setopt($curl, CURLOPT_POST, 1);
+
+                if ($data)
+                    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+                break;
+            case "PUT":
+                curl_setopt($curl, CURLOPT_PUT, 1);
+                break;
+            default:
+                if ($data)
+                    $url = sprintf("%s?%s", $url, http_build_query($data));
+        }
+
+        if ($headers){
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+        }
+
+        // Optional Authentication:
+        curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+        curl_setopt($curl, CURLOPT_USERPWD, "username:password");
+
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+
+        $result = curl_exec($curl);
+
+        curl_close($curl);
+
+        return $result;
     }
 
     
