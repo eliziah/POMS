@@ -186,14 +186,18 @@
                                                 </td>
                                                 <td><b>{{ $data->short_name }}</b></td>
 
-                                                @if ($data->spi < .75)
+                                                @if ($data->spi == 0)
+                                                    <td><span class="badge badge-pill badge-secondary">---</span> </td>   
+                                                @elseif ($data->spi < .75)
                                                     <td><span class="badge badge-pill badge-danger">{{number_format((float)$data->spi, 2, '.', '')}}</span> </td>                                               
                                                 @elseif ($data->spi < .89)
                                                     <td><span class="badge badge-pill badge-warning">{{number_format((float)$data->spi, 2, '.', '')}}</span> </td>    
                                                 @elseif ($data->spi >= .89)
                                                     <td><span class="badge badge-pill badge-success">{{number_format((float)$data->spi, 2, '.', '')}}</span> </td>    
                                                 @endif
-                                                @if ($data->cpi < .75)
+                                                @if ($data->cpi == 0)
+                                                    <td><span class="badge badge-pill badge-secondary">---</span></td>   
+                                                @elseif ($data->cpi < .75)
                                                     <td><span class="badge badge-pill badge-danger">{{number_format((float)$data->cpi, 2, '.', '')}}</span> </td>
                                                 @elseif ($data->cpi < .89)
                                                     <td><span class="badge badge-pill badge-warning">{{number_format((float)$data->cpi, 2, '.', '')}}</span> </td>        
