@@ -215,7 +215,11 @@
                                                                 @endif
                                                             </div>
                                                             <div class="col-lg-12 mt-3">
+                                                                @if($project->area_type == "Internal")
                                                                 <span><b>Overall Budget:</b><br/> Php {{number_format($project->overall_budget,2,'.',',')}}</span>
+                                                                @elseif($project->area_type == "External")
+                                                                <span><b>Contract Value:</b><br/> Php {{number_format($project->overall_budget,2,'.',',')}}</span>
+                                                                @endif
                                                             </div>
                                                             <div class="col-lg-12 mt-3">
                                                                 <span><b>T3 Budget:</b><br/> Php {{number_format($project->budget,2,'.',',')}}</span>
