@@ -97,6 +97,42 @@
                                                         <h5><b>Implementor:</b><br/> {{$project->sponsor_dept}}</h5>
                                                         @endif
                                                     </div>
+                                                    <div class="col-lg-12 mt-3">
+                                                        <h5><b>T3 Project ID:</b><br/> {{$project->t3_id}}</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="row">
+                                                    <div class="col-lg-12 mt-3">
+                                                        @if($project->gate == 1)
+                                                        <h5><b>Project Gate:</b><br/> <span class="text-primary">Gate 1</span></h5>
+                                                        @elseif($project->gate == 2)
+                                                        <h5><b>Project Gate:</b><br/> <span class="text-primary">Gate 2</span></h5>
+                                                        @elseif($project->gate == 3)
+                                                        <h5><b>Project Gate:</b><br/> <span class="text-primary">Gate 3</span></h5>
+                                                        @elseif($project->gate == 4)
+                                                        <h5><b>Project Gate:</b><br/> <span class="text-primary">Gate 4</span></h5>
+                                                        @elseif($project->gate == 5)
+                                                        <h5><b>Project Gate:</b><br/> <span class="text-success">Gate BR</span></h5>
+                                                        @endif
+                                                    </div>
+                                                    <div class="col-lg-12 mt-3">
+                                                        @if($project->area_type == "Internal")
+                                                        <h5><b>Overall Budget:</b><br/> Php {{number_format($project->overall_budget,2,'.',',')}}</h5>
+                                                        @elseif($project->area_type == "External")
+                                                        <h5><b>Contract Value:</b><br/> Php {{number_format($project->overall_budget,2,'.',',')}}</h5>
+                                                        @endif
+                                                    </div>
+                                                    <div class="col-lg-12 mt-3">
+                                                        <h5><b>T3 Budget:</b><br/> Php {{number_format($project->budget,2,'.',',')}}</h5>
+                                                    </div>
+                                                    <div class="col-lg-12 mt-3">
+                                                        <h5><b>T3 Earned Value:</b><br/> Php {{number_format(($project->budget*($project->progress/100)),2,'.',',')}}</h5>
+                                                    </div>
+                                                    <div class="col-lg-12 mt-3">
+                                                        <h5><b>T3 Actual Cost:</b><br/> Php {{number_format($project->actual_cost,2,'.',',')}}</h5>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-4">
@@ -125,32 +161,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-4">
-                                                <div class="row">
-                                                    <div class="col-lg-12 mt-3">
-                                                        @if($project->gate == 1)
-                                                        <h5><b>Project Gate:</b><br/> <span class="text-primary">Gate 1</span></h5>
-                                                        @elseif($project->gate == 2)
-                                                        <h5><b>Project Gate:</b><br/> <span class="text-primary">Gate 2</span></h5>
-                                                        @elseif($project->gate == 3)
-                                                        <h5><b>Project Gate:</b><br/> <span class="text-primary">Gate 3</span></h5>
-                                                        @elseif($project->gate == 4)
-                                                        <h5><b>Project Gate:</b><br/> <span class="text-primary">Gate 4</span></h5>
-                                                        @elseif($project->gate == 5)
-                                                        <h5><b>Project Gate:</b><br/> <span class="text-success">Gate BR</span></h5>
-                                                        @endif
-                                                    </div>
-                                                    <div class="col-lg-12 mt-3">
-                                                        <h5><b>Project Budget:</b><br/> Php {{number_format($project->budget,2,'.',',')}}</h5>
-                                                    </div>
-                                                    <div class="col-lg-12 mt-3">
-                                                        <h5><b>Earned Value:</b><br/> Php {{number_format(($project->budget*($project->progress/100)),2,'.',',')}}</h5>
-                                                    </div>
-                                                    <div class="col-lg-12 mt-3">
-                                                        <h5><b>Actual Cost:</b><br/> Php {{number_format($actual_cost,2,'.',',')}}</h5>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            
                                         </div>
                                     </div>
                                     <div class="col-lg-5 mt-3 order-1 order-lg-2 order-xl-2">
