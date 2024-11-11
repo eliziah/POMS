@@ -221,10 +221,10 @@
                                                                 <span><b>T3 Budget:</b><br/> Php {{number_format($project->budget,2,'.',',')}}</span>
                                                             </div>
                                                             <div class="col-lg-12 mt-3">
-                                                                <span><b>Earned Value:</b><br/> Php {{number_format($earned_value,2,'.',',')}}</span>
+                                                                <span><b>T3 Earned Value:</b><br/> Php {{number_format($earned_value,2,'.',',')}}</span>
                                                             </div>
                                                             <div class="col-lg-12 mt-3">
-                                                                <span><b>Actual Cost:</b><br/> Php {{number_format($project->actual_cost,2,'.',',')}}</span>
+                                                                <span><b>T3 Actual Cost:</b><br/> Php {{number_format($project->actual_cost,2,'.',',')}}</span>
                                                             </div>
                                                         </div>
                                                     </div>
